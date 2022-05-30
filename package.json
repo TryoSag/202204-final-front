@@ -46,5 +46,12 @@
   },
   "devDependencies": {
     "husky": "^7.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/index.js",
+      "!src/reportWebVitals.js",
+      "!src/components/LoginForm/__snapshots__/*"
+    ]
   }
 }
