@@ -46,4 +46,20 @@ describe("Given the Header component", () => {
       ).toBeInTheDocument();
     });
   });
+
+  describe("When it's called and receives a pageName 'List of Pet's' and adminUser false", () => {
+    test("Then it should not render any button", () => {
+      render(<Header pageName={"List of Pet's"} adminUser={false} />);
+
+      expect(screen.queryByRole("button")).toBeNull();
+    });
+  });
+
+  describe("When it's called and receives a pageName 'More about' and adminUser false", () => {
+    test("Then it should not render any button", () => {
+      render(<Header pageName={"More about"} adminUser={false} />);
+
+      expect(screen.queryByRole("button")).toBeNull();
+    });
+  });
 });
