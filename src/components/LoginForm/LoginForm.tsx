@@ -6,11 +6,11 @@ import { loginThunk } from "../../redux/thunks/userThunks";
 const LoginForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
 
-  const emptyForm = {
+  const emptyLoginForm = {
     username: "",
     password: "",
   };
-  const [formData, setFormData] = useState(emptyForm);
+  const [formData, setFormData] = useState(emptyLoginForm);
 
   const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData({
@@ -23,7 +23,7 @@ const LoginForm = (): JSX.Element => {
     event.preventDefault();
 
     dispatch(loginThunk(formData));
-    setFormData(emptyForm);
+    setFormData(emptyLoginForm);
   };
 
   return (
