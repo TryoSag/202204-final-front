@@ -56,8 +56,8 @@
       "!src/index.tsx",
       "!src/reportWebVitals.ts",
       "!src/components/LoginForm/__snapshots__/*",
-      "setupTests.ts",
-      "react-app-env.d.ts"
+      "!setupTests.ts",
+      "!react-app-env.d.ts"
     ]
   }
 }
