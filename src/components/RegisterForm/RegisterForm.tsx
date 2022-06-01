@@ -15,6 +15,8 @@ const RegisterForm = (): JSX.Element => {
           <input type="password" id="password" placeholder="Password" />
         </label>
         <button type="submit">Register</button>
+      </div>
+      <div>
         <p>You have an account yet</p>
         <button>to Login </button>
       </div>
