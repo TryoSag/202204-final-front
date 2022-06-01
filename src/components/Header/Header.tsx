@@ -11,9 +11,9 @@ const Header = ({ pageName, adminUser }: HeaderProps): JSX.Element => {
       </div>
       <h1>{pageName}</h1>
       <div>
-        {adminUser && (pageName = "List") && <button></button>}
-        {adminUser && (pageName = "More about") && <button></button>}
-        {adminUser && (pageName = "More about") && <button></button>}
+        {adminUser && pageName === "List of Pet's" && <button>Create</button>}
+        {adminUser && pageName === "More about" && <button>Edit</button>}
+        {adminUser && pageName === "More about" && <button>Delete</button>}
       </div>
     </header>
   );
