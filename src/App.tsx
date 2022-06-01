@@ -1,10 +1,36 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import RouterLimiter from "./components/RouterLimiter/RouterLimiter";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 const App = () => (
   <>
-    <LoginPage />
-    <RegisterPage />
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <RouterLimiter>
+            <Navigate to="/list" />
+          </RouterLimiter>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <RouterLimiter>
+            <LoginPage />
+          </RouterLimiter>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <RouterLimiter>
+            <RegisterPage />
+          </RouterLimiter>
+        }
+      />
+    </Routes>
   </>
 );
 
