@@ -8,7 +8,10 @@ export const registerThunk =
   (newUserData: UserToRegister) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/user/register`;
 
-    const { data } = await axios.post<UserToRegister>(url, newUserData);
+    const { data } = await axios.post<UserToRegister>(url, {
+      ...newUserData,
+      adminUser: false,
+    });
     if (data) {
       const userData: UserToLogin = {
         username: data.username,

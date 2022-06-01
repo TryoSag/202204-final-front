@@ -1,7 +1,7 @@
 import Header from "../../components/Header/Header";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 
-const RegisterPage = () => {
+const RegisterPage = (): JSX.Element => {
   return (
     <>
       <Header pageName={"Register"} adminUser={false} />
