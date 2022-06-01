@@ -1,20 +1,20 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { UserData, UserToLogin, UserToRegister } from "../../types/types";
+import { UserData, UserToLogin, UserToRegister } from "../../types/userTypes";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 
 export const registerThunk =
-  (userData: UserToRegister) => async (dispatch: AppDispatch) => {
-    const url: string = `${process.env.REACT_APP_API_URL}/user/register`;
+  (newUserData: UserToRegister) => async (dispatch: AppDispatch) => {
+    const url = `${process.env.REACT_APP_API_URL}/user/register`;
 
-    const { data } = await axios.post<UserToRegister>(url, userData);
+    const { data } = await axios.post<UserToRegister>(url, newUserData);
     if (data) {
-      const newUser: UserToLogin = {
+      const userData: UserToLogin = {
         username: data.username,
-        password: userData.password,
+        password: newUserData.password,
       };
-      dispatch(loginThunk(newUser));
+      dispatch(loginThunk(userData));
     }
   };
 
