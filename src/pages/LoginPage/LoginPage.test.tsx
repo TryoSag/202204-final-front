@@ -7,7 +7,7 @@ describe("Given the LoginPage page", () => {
       render(<LoginPage />);
 
       expect(
-        screen.getByRole("heading", { name: "Login" })
+        screen.getByRole("heading", { level: 1, name: "Login" })
       ).toBeInTheDocument();
     });
 
