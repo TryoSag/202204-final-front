@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import RouterLimiter from "./navigationUtils/routerLimiter";
+import RouterLimiter from "./components/RouterLimiter/RouterLimiter";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
