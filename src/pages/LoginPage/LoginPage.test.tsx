@@ -11,10 +11,10 @@ describe("Given the LoginPage page", () => {
       ).toBeInTheDocument();
     });
 
-    test("Then it should render a label with Name", () => {
+    test("Then it should render a label with 'Username'", () => {
       render(<LoginPage />);
 
-      expect(screen.getByLabelText("Name")).toBeInTheDocument();
+      expect(screen.getByLabelText("Username")).toBeInTheDocument();
     });
   });
 });

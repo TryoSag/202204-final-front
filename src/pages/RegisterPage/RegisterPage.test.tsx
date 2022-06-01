@@ -11,10 +11,10 @@ describe("Given the RegisterPage page", () => {
       ).toBeInTheDocument();
     });
 
-    test("Then it should render a label with Username", () => {
+    test("Then it should render a label with 'Name'", () => {
       render(<RegisterPage />);
 
-      expect(screen.getByLabelText("Username")).toBeInTheDocument();
+      expect(screen.getByLabelText("Name")).toBeInTheDocument();
     });
   });
 });
