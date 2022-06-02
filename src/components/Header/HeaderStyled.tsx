@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const HeaderStyled = styled.header`
+  font-family: "Nunito", sans-serif;
   display: flex;
 
   .container--header-logo-title {
