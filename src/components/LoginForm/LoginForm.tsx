@@ -58,7 +58,7 @@ const LoginForm = (): JSX.Element => {
         </label>
         <button
           type="submit"
-          disabled={formData.username !== "" || formData.password !== ""}
+          disabled={formData.username === "" || formData.password === ""}
         >
           Login
         </button>
