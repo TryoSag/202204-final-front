@@ -1,3 +1,5 @@
+import HeaderStyled from "./HeaderStyled";
+
 interface HeaderProps {
   pageName: string;
   adminUser: boolean;
@@ -5,17 +7,17 @@ interface HeaderProps {
 
 const Header = ({ pageName, adminUser }: HeaderProps): JSX.Element => {
   return (
-    <header>
-      <div>
-        <img src="" alt="Pet's House logo" />
+    <HeaderStyled>
+      <div className="container--header-logo-title">
+        <img src="./images/logo.svg" alt="Pet's House logo" />
       </div>
       <h1>{pageName}</h1>
-      <div>
+      <div className="container--header-buttons">
         {adminUser && pageName === "List of Pet's" && <button>Create</button>}
         {adminUser && pageName === "More about" && <button>Edit</button>}
         {adminUser && pageName === "More about" && <button>Delete</button>}
       </div>
-    </header>
+    </HeaderStyled>
   );
 };
 

@@ -12,11 +12,13 @@ export const registerThunk =
       ...newUserData,
       adminUser: false,
     });
+
     if (data) {
       const userData: UserToLogin = {
         username: data.username,
         password: newUserData.password,
       };
+
       dispatch(loginThunk(userData));
     }
   };
@@ -31,6 +33,7 @@ export const loginThunk =
 
     if (token) {
       localStorage.setItem("token", token);
+
       const { username, adminUser } = jwtDecode<UserData>(token);
       dispatch(loginActionCreator({ username, adminUser }));
     }
