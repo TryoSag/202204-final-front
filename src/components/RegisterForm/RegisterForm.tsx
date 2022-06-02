@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch } from "../../redux/store/store";
 import { registerThunk } from "../../redux/thunks/userThunks";
+import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
@@ -29,7 +30,7 @@ const RegisterForm = (): JSX.Element => {
   };
 
   return (
-    <form
+    <RegisterFormStyled
       className="register-form"
       autoComplete="off"
       onSubmit={formSubmit}
@@ -69,9 +70,9 @@ const RegisterForm = (): JSX.Element => {
         <button
           type="submit"
           disabled={
-            formData.name !== "" ||
-            formData.username !== "" ||
-            formData.password !== ""
+            formData.name === "" ||
+            formData.username === "" ||
+            formData.password === ""
           }
         >
           Register
@@ -81,7 +82,7 @@ const RegisterForm = (): JSX.Element => {
         <p>You have an account</p>
         <Link to={"/login"}>Login</Link>
       </div>
-    </form>
+    </RegisterFormStyled>
   );
 };
 

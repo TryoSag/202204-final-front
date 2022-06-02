@@ -14,22 +14,8 @@ const App = () => (
           </RouterLimiter>
         }
       />
-      <Route
-        path="/login"
-        element={
-          <RouterLimiter>
-            <LoginPage />
-          </RouterLimiter>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <RouterLimiter>
-            <RegisterPage />
-          </RouterLimiter>
-        }
-      />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
     </Routes>
   </>
 );
