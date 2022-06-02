@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { AppDispatch } from "../../redux/store/store";
 import { registerThunk } from "../../redux/thunks/userThunks";
 
@@ -77,8 +78,8 @@ const RegisterForm = (): JSX.Element => {
         </button>
       </div>
       <div>
-        <p>You have an account yet</p>
-        <button>to Login </button>
+        <p>You have an account</p>
+        <Link to={"/login"}>Login</Link>
       </div>
     </form>
   );

@@ -42,7 +42,7 @@ describe("Given the LoginForm component", () => {
       expect(screen.getByRole("button", { name: "Login" })).toBeInTheDocument();
     });
 
-    test("Then it should render 1 button with text 'to register'", () => {
+    test("Then it should render 1 link with text 'Create account'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>

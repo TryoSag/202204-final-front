@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import RegisterForm from "./RegisterForm";
 
@@ -7,9 +8,11 @@ describe("Given the RegisterForm component", () => {
   describe("When it's called", () => {
     test("Then it should render 1 label with text Name", () => {
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       expect(screen.getByLabelText("Name")).toBeInTheDocument();
@@ -17,9 +20,11 @@ describe("Given the RegisterForm component", () => {
 
     test("Then it should render 1 label with text Username", () => {
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       expect(screen.getByLabelText("Username")).toBeInTheDocument();
@@ -27,9 +32,11 @@ describe("Given the RegisterForm component", () => {
 
     test("Then it should render 1 label with text Password", () => {
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       expect(screen.getByLabelText("Password")).toBeInTheDocument();
@@ -37,9 +44,11 @@ describe("Given the RegisterForm component", () => {
 
     test("Then it should render 1 button with text 'Register'", () => {
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
       expect(
@@ -47,16 +56,16 @@ describe("Given the RegisterForm component", () => {
       ).toBeInTheDocument();
     });
 
-    test("Then it should render 1 button with text 'to Login'", () => {
+    test("Then it should render 1 link with text 'Login'", () => {
       render(
-        <Provider store={store}>
-          <RegisterForm />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
       );
 
-      expect(
-        screen.getByRole("button", { name: "to Login" })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: "Login" })).toBeInTheDocument();
     });
   });
 });
