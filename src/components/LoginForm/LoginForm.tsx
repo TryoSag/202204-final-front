@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store/store";
 import { loginThunk } from "../../redux/thunks/userThunks";
+import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
@@ -27,7 +28,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   return (
-    <form
+    <LoginFormStyled
       className="login-form"
       autoComplete="off"
       onSubmit={formSubmit}
@@ -65,7 +66,7 @@ const LoginForm = (): JSX.Element => {
         <p>If you want to create an account</p>
         <button>to register</button>
       </div>
-    </form>
+    </LoginFormStyled>
   );
 };
 
