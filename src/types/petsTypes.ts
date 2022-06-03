@@ -1,8 +1,11 @@
+type Animal = "dog" | "cat";
+type Sex = "male" | "female";
+
 export interface Pet {
   name: string;
   id: string;
-  type: "dog" | "cat";
-  sex: "male" | "female";
+  animal: Animal;
+  sex: Sex;
   picture: string;
   age: number;
   description: string;
