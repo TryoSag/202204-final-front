@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Pet } from "../../types/petsTypes";
+import { IPet } from "../../types/petsTypes";
 
-const petsInitialState: Pet[] = [];
+const petsInitialState: IPet[] = [];
 
 const petsSlice = createSlice({
   name: "pets",
   initialState: petsInitialState,
   reducers: {
-    getPets: (pets, action: PayloadAction<Pet[]>): Pet[] => [...action.payload],
+    getPets: (pets, action: PayloadAction<IPet[]>): IPet[] => [
+      ...action.payload,
+    ],
   },
 });
 
