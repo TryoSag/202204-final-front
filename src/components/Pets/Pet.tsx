@@ -5,7 +5,9 @@ const Pet = ({ name, picture, sex, animal }: PetInList): JSX.Element => {
     <li>
       <img src={picture} alt={`${animal} named ${name}`} />
       <ul>
-        <li>{name}</li>
+        <li>
+          <span>{name}</span>
+        </li>
         <li>
           <img src={`./images/icon-${sex}.svg`} alt={`${sex} icon`} />
         </li>
