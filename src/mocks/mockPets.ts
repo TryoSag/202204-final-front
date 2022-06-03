@@ -1,6 +1,6 @@
-import { Pet } from "../types/petsTypes";
+import { IPet } from "../types/petsTypes";
 
-export const listOfPets: Pet[] = [
+export const listOfPets: IPet[] = [
   {
     name: "test",
     id: "test",

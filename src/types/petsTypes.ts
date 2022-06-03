@@ -1,7 +1,7 @@
 type Animal = "dog" | "cat";
 type Sex = "male" | "female";
 
-export interface Pet {
+export interface IPet {
   name: string;
   id: string;
   animal: Animal;
@@ -10,4 +10,11 @@ export interface Pet {
   age: number;
   description: string;
   specialTreatment: string;
+}
+
+export interface PetInList {
+  name: string;
+  picture: string;
+  animal: Animal;
+  sex: Sex;
 }
