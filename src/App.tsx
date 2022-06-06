@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import RouterLimiter from "./components/RouterLimiter/RouterLimiter";
+import RouterRedirectList from "./components/RouterRedirectList/RouterRedirectList";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
@@ -9,17 +9,17 @@ const App = () => (
       <Route
         path="/"
         element={
-          <RouterLimiter>
+          <RouterRedirectList>
             <Navigate to="/list" />
-          </RouterLimiter>
+          </RouterRedirectList>
         }
       />
       <Route
         path="/list"
         element={
-          <RouterLimiter>
+          <RouterRedirectList>
             <Navigate to="/list" />
-          </RouterLimiter>
+          </RouterRedirectList>
         }
       />
       <Route path="/login" element={<LoginPage />} />

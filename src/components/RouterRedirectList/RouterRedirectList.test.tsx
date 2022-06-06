@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import RouterLimiter from "./RouterLimiter";
+import RouterRedirectList from "./RouterRedirectList";
 
 const mockNavigate = jest.fn();
 
@@ -15,9 +15,9 @@ describe("Given the RouterLimiter function", () => {
       });
 
       render(
-        <RouterLimiter>
+        <RouterRedirectList>
           <p>test</p>
-        </RouterLimiter>
+        </RouterRedirectList>
       );
 
       expect(mockNavigate).toHaveBeenCalledWith("/list");
