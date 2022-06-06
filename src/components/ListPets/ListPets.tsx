@@ -8,8 +8,6 @@ import Pet from "../Pets/Pet";
 const ListPets = (): JSX.Element => {
   const [animalFilter, setAnimalFilter] = useState(["cat", "dog"]);
 
-  const pets: IPet[] = useSelector((state: RootState) => state.pets);
-
   const filterButtons = [
     {
       text: "All",
@@ -28,6 +26,11 @@ const ListPets = (): JSX.Element => {
     },
   ];
 
+  const previousPage = () => {};
+  const nextPage = () => {};
+
+  const pets: IPet[] = useSelector((state: RootState) => state.pets);
+
   return (
     <main>
       <ul className="container-filter">
@@ -44,7 +47,10 @@ const ListPets = (): JSX.Element => {
           }
         })}
       </ul>
-      <section className="container-pages"></section>
+      <section className="container-pagination">
+        <button className="button--previous-page" onClick={previousPage} />
+        <button className="button--next-page" onClick={nextPage} />
+      </section>
     </main>
   );
 };

@@ -1,7 +1,7 @@
 interface PropsFilterButton {
   text: string;
   image: string;
-  action: Function;
+  action: () => void;
 }
 
 const FilterButton = ({
@@ -12,7 +12,7 @@ const FilterButton = ({
   return (
     <li>
       <button onClick={action}>
-        <img src={`./images/icon-${image}.svg"`} alt="" />
+        <img src={`./images/icon-${image}.svg"`} alt={`${text} icon`} />
       </button>
       <span>{text}</span>
     </li>
