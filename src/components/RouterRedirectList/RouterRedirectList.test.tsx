@@ -8,7 +8,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Given the RouterLimiter function", () => {
-  describe("When it's call and the user is logged", () => {
+  describe("When it's call and there are a token in the local storage", () => {
     test("Then it should call navigate with '/list'", () => {
       Object.defineProperty(window, "localStorage", {
         value: { getItem: jest.fn(() => "token") },
