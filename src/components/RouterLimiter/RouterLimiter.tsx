@@ -11,7 +11,7 @@ const RouterLimiter = ({ children }: ChildrenProps) => {
 
   useEffect(() => {
     if (token) {
-      navigate("list");
+      navigate("/list");
     }
   }, [navigate, token]);
 
