@@ -8,7 +8,7 @@ const NavigationBar = () => {
   const navigate = useNavigate();
 
   const list = () => {
-    navigate("list");
+    navigate("/list");
   };
 
   const logout = () => {
