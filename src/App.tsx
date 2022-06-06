@@ -14,6 +14,14 @@ const App = () => (
           </RouterLimiter>
         }
       />
+      <Route
+        path="/list"
+        element={
+          <RouterLimiter>
+            <Navigate to="/list" />
+          </RouterLimiter>
+        }
+      />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>
