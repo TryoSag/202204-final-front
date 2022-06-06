@@ -16,7 +16,7 @@ const RouterRedirectLogin = ({ children }: ChildrenProps) => {
     }
   }, [navigate, token]);
 
-  if (!token) {
+  if (token) {
     return children;
   }
   return null;
