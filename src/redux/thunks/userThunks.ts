@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import { UserData, UserToLogin, UserToRegister } from "../../types/userTypes";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
+import { getPetsThunk } from "./petsThunks";
 
 export const registerThunk =
   (newUserData: UserToRegister) => async (dispatch: AppDispatch) => {
@@ -36,5 +37,6 @@ export const loginThunk =
 
       const { username, adminUser } = jwtDecode<UserData>(token);
       dispatch(loginActionCreator({ username, adminUser }));
+      dispatch(getPetsThunk(token));
     }
   };
