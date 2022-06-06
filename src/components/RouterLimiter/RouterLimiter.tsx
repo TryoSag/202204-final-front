@@ -18,6 +18,7 @@ const RouterLimiter = ({ children }: ChildrenProps) => {
       navigate("/login");
     }
   }, [navigate, logged]);
+
   return children;
 };
 
