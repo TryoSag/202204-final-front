@@ -15,7 +15,7 @@ const App = () => (
         }
       />
       <Route
-        path="/ist"
+        path="/list"
         element={
           <RouterLimiter>
             <Navigate to="/list" />
