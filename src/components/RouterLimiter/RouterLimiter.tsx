@@ -1,25 +1,24 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../../redux/store/store";
-
 interface ChildrenProps {
   children: JSX.Element;
 }
 
 const RouterLimiter = ({ children }: ChildrenProps) => {
-  const logged = useSelector((state: RootState) => state.user.logged);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (logged) {
-      navigate("/list");
-    } else {
-      navigate("/login");
-    }
-  }, [navigate, logged]);
+  const token: string | null = localStorage.getItem("token");
 
-  return children;
+  useEffect(() => {
+    if (token) {
+      navigate("list");
+    }
+  }, [navigate, token]);
+
+  if (token) {
+    return children;
+  }
+  return null;
 };
 
 export default RouterLimiter;
