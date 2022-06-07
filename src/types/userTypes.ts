@@ -1,18 +1,13 @@
 export interface User {
   username: string;
   adminUser: boolean;
-  logged: boolean;
+  eMail: string;
 }
-
-export interface UserData {
-  username: string;
-  adminUser: boolean;
-}
-
 export interface UserToRegister {
   name: string;
   username: string;
   password: string;
+  eMail: string;
 }
 
 export interface UserToLogin {

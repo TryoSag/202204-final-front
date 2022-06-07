@@ -5,6 +5,7 @@ import { loginThunk, registerThunk } from "./userThunks";
 jest.mock("jwt-decode", () => () => ({
   username: "correctUsername",
   adminUser: false,
+  eMail: "testEMail",
 }));
 
 describe("Given the loginThunk function", () => {
@@ -22,6 +23,7 @@ describe("Given the loginThunk function", () => {
       const expectedData = {
         username: "correctUsername",
         adminUser: false,
+        eMail: "testEMail",
       };
 
       const expectedAction = loginActionCreator(expectedData);
@@ -41,6 +43,7 @@ describe("Given the registerThunk function", () => {
         name: "testUser",
         username: "testUser",
         password: "testUser",
+        eMail: "testEMail",
       };
       const dispatch = jest.fn();
       axios.post = jest

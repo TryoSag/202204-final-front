@@ -6,7 +6,7 @@ import RegisterForm from "./RegisterForm";
 
 describe("Given the RegisterForm component", () => {
   describe("When it's called", () => {
-    test("Then it should render 1 label with text Name", () => {
+    test("Then it should render 1 label with text 'Name'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -18,7 +18,7 @@ describe("Given the RegisterForm component", () => {
       expect(screen.getByLabelText("Name")).toBeInTheDocument();
     });
 
-    test("Then it should render 1 label with text Username", () => {
+    test("Then it should render 1 label with text 'Username'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -30,7 +30,19 @@ describe("Given the RegisterForm component", () => {
       expect(screen.getByLabelText("Username")).toBeInTheDocument();
     });
 
-    test("Then it should render 1 label with text Password", () => {
+    test("Then it should render 1 label with text 'Email'", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      expect(screen.getByLabelText("Email")).toBeInTheDocument();
+    });
+
+    test("Then it should render 1 label with text 'Password'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
