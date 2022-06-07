@@ -1,3 +1,5 @@
+import FilterButtonStyled from "./FilterButtonStyled";
+
 interface PropsFilterButton {
   text: string;
   image: string;
@@ -10,12 +12,14 @@ const FilterButton = ({
   action,
 }: PropsFilterButton): JSX.Element => {
   return (
-    <li>
-      <button onClick={action}>
-        <img src={`./images/icon-${image}.svg"`} alt={`${text} icon`} />
-      </button>
+    <FilterButtonStyled>
+      <img
+        src={`./images/icon-${image}.svg`}
+        alt={`${text} icon`}
+        onClick={action}
+      />
       <span>{text}</span>
-    </li>
+    </FilterButtonStyled>
   );
 };
 
