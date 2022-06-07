@@ -6,7 +6,7 @@ const NavigationBarStyled = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  width: 100vw;
+  width: 95%;
   padding: 0 5%;
 
   > div {
