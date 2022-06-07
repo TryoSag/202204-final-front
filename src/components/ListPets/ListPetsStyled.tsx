@@ -1,32 +1,33 @@
 import styled from "styled-components";
 
 const ListPetsStyled = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: #fff;
   border-radius: 50px;
 
   > ul {
-    box-sizing: border-box;
-    max-width: 100vw;
+    width: 100%;
 
     padding: 0;
     list-style: none;
 
     display: flex;
-    margin: 10px 30px;
+    flex-wrap: wrap;
   }
 
   > section {
     display: flex;
     justify-content: center;
 
-    > label {
-      font-size: 0;
+    padding-bottom: 20px;
+
+    > img {
       margin: 10px;
 
-      > button {
-        height: 40px;
-        width: 40px;
-      }
+      height: 40px;
+      width: 40px;
     }
   }
 `;
