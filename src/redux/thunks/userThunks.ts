@@ -38,6 +38,5 @@ export const loginThunk =
       const { username, adminUser, eMail } = jwtDecode<User>(token);
 
       dispatch(loginActionCreator({ username, adminUser, eMail }));
-      dispatch(getPetsThunk(token));
     }
   };
