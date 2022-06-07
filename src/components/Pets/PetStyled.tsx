@@ -1,21 +1,30 @@
 import styled from "styled-components";
 
 const PetStyled = styled.li`
-  box-sizing: border-box;
   height: 250px;
-  width: 150px;
+  width: 160px;
   border-radius: 10px;
   background-color: #5353f29d;
 
   display: flex;
   flex-direction: column;
+  align-content: center;
 
-  margin: 5%;
+  margin: 3%;
 
-  > img {
+  > div {
     height: 200px;
-    border-radius: 10px;
-    overflow: hidden;
+    width: 160px;
+
+    object-position: 0 0;
+
+    > img {
+      height: 200px;
+      width: 160px;
+      border-radius: 10px;
+
+      object-fit: cover;
+    }
   }
   > ul {
     padding: 0;
@@ -24,7 +33,7 @@ const PetStyled = styled.li`
     justify-content: space-around;
 
     > li {
-      margin-top: 5px;
+      margin-top: 10px;
       > span {
         font-size: 20px;
       }

@@ -4,7 +4,9 @@ import PetStyled from "./PetStyled";
 const Pet = ({ name, picture, sex, animal }: PetInList): JSX.Element => {
   return (
     <PetStyled>
-      <img src={picture} alt={`${animal} named ${name}`} />
+      <div>
+        <img src={picture} alt={`${animal} named ${name}`} />
+      </div>
       <ul>
         <li>
           <span>{name}</span>
