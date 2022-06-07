@@ -12,6 +12,7 @@ const RegisterForm = (): JSX.Element => {
     name: "",
     username: "",
     password: "",
+    eMail: "",
   };
   const [formData, setFormData] = useState(emptyRegisterForm);
 
@@ -57,6 +58,16 @@ const RegisterForm = (): JSX.Element => {
             onChange={updateForm}
           />
         </label>
+        <label htmlFor="eMail">
+          Email
+          <input
+            type="text"
+            id="eMail"
+            placeholder="eMAil"
+            value={formData.eMail}
+            onChange={updateForm}
+          />
+        </label>
         <label htmlFor="password">
           Password
           <input
@@ -72,7 +83,8 @@ const RegisterForm = (): JSX.Element => {
           disabled={
             formData.name === "" ||
             formData.username === "" ||
-            formData.password === ""
+            formData.password === "" ||
+            formData.eMail === ""
           }
         >
           Register

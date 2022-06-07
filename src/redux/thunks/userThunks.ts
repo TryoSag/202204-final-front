@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { UserData, UserToLogin, UserToRegister } from "../../types/userTypes";
+import { User, UserToLogin, UserToRegister } from "../../types/userTypes";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
 import { getPetsThunk } from "./petsThunks";
@@ -35,8 +35,9 @@ export const loginThunk =
     if (token) {
       localStorage.setItem("token", token);
 
-      const { username, adminUser } = jwtDecode<UserData>(token);
-      dispatch(loginActionCreator({ username, adminUser }));
+      const { username, adminUser, eMail } = jwtDecode<User>(token);
+
+      dispatch(loginActionCreator({ username, adminUser, eMail }));
       dispatch(getPetsThunk(token));
     }
   };

@@ -1,10 +1,6 @@
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logoutActionCreator } from "../../redux/features/userSlice";
-import { AppDispatch } from "../../redux/store/store";
 
 const NavigationBar = () => {
-  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
   const list = () => {
@@ -12,7 +8,6 @@ const NavigationBar = () => {
   };
 
   const logout = () => {
-    dispatch(logoutActionCreator());
     localStorage.removeItem("token");
     navigate("/");
   };
