@@ -1,8 +1,9 @@
 import { PetInList } from "../../types/petsTypes";
+import PetStyled from "./PetStyled";
 
 const Pet = ({ name, picture, sex, animal }: PetInList): JSX.Element => {
   return (
-    <li>
+    <PetStyled>
       <img src={picture} alt={`${animal} named ${name}`} />
       <ul>
         <li>
@@ -12,7 +13,7 @@ const Pet = ({ name, picture, sex, animal }: PetInList): JSX.Element => {
           <img src={`./images/icon-${sex}.svg`} alt={`${sex} icon`} />
         </li>
       </ul>
-    </li>
+    </PetStyled>
   );
 };
 
