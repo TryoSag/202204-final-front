@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store/store";
 import { IPet } from "../../types/petsTypes";
 import FilterButton from "../FilterButton/FilterButton";
 import Pet from "../Pets/Pet";
+import ListPetsStyled from "./ListPetsStyled";
 
 const ListPets = (): JSX.Element => {
   const [animalFilter, setAnimalFilter] = useState(["cat", "dog"]);
@@ -32,7 +33,7 @@ const ListPets = (): JSX.Element => {
   const pets: IPet[] = useSelector((state: RootState) => state.pets);
 
   return (
-    <main>
+    <ListPetsStyled>
       <ul className="container-filter">
         {filterButtons.map(({ text, image, action }) => (
           <FilterButton
@@ -69,7 +70,7 @@ const ListPets = (): JSX.Element => {
           onClick={nextPage}
         />
       </section>
-    </main>
+    </ListPetsStyled>
   );
 };
 
