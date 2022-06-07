@@ -17,15 +17,15 @@ describe("Given the ListPets component", () => {
       expect(screen.getByAltText("Dogs icon")).toBeInTheDocument();
     });
 
-    test("Then it should render 2 labels with the text 'previous page button' and 'next page button'", () => {
+    test("Then it should render 2 images with the alternative text 'previous page' and 'next page'", () => {
       render(
         <Provider store={store}>
           <ListPets />
         </Provider>
       );
 
-      expect(screen.getByLabelText("previous page button")).toBeInTheDocument();
-      expect(screen.getByLabelText("next page button")).toBeInTheDocument();
+      expect(screen.getByAltText("previous page")).toBeInTheDocument();
+      expect(screen.getByAltText("next page")).toBeInTheDocument();
     });
   });
 });

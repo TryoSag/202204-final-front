@@ -58,14 +58,16 @@ const ListPets = (): JSX.Element => {
         )}
       </ul>
       <section className="container-pagination">
-        <label>
-          <button className="button--previous-page" onClick={previousPage} />
-          previous page button
-        </label>
-        <label>
-          <button className="button--next-page" onClick={nextPage} />
-          next page button
-        </label>
+        <img
+          src="./images/image-previous-page.svg"
+          alt="previous page"
+          onClick={previousPage}
+        />
+        <img
+          src="./images/image-next-page.svg"
+          alt="next page"
+          onClick={nextPage}
+        />
       </section>
     </main>
   );
