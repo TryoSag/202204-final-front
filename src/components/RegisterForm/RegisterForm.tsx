@@ -63,7 +63,7 @@ const RegisterForm = (): JSX.Element => {
           <input
             type="text"
             id="eMail"
-            placeholder="eMAil"
+            placeholder="eMail"
             value={formData.eMail}
             onChange={updateForm}
           />
