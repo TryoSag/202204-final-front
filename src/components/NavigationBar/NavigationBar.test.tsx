@@ -6,9 +6,7 @@ import NavigationBar from "./NavigationBar";
 
 describe("Given the NavigationBar component", () => {
   describe("When it's called", () => {
-    test("Then it should render 2 buttons", () => {
-      const expectedNumberOfButtons = 2;
-
+    test("Then it should render 2 images, one with alternative text 'home icon' and 'logout icon'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -17,9 +15,8 @@ describe("Given the NavigationBar component", () => {
         </BrowserRouter>
       );
 
-      expect(screen.getAllByRole("button")).toHaveLength(
-        expectedNumberOfButtons
-      );
+      expect(screen.getByAltText("home icon")).toBeInTheDocument();
+      expect(screen.getByAltText("logout icon")).toBeInTheDocument();
     });
   });
 });

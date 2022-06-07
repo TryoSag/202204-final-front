@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store/store";
 import { IPet } from "../../types/petsTypes";
 import FilterButton from "../FilterButton/FilterButton";
 import Pet from "../Pets/Pet";
+import ListPetsStyled from "./ListPetsStyled";
 
 const ListPets = (): JSX.Element => {
   const [animalFilter, setAnimalFilter] = useState(["cat", "dog"]);
@@ -32,7 +33,7 @@ const ListPets = (): JSX.Element => {
   const pets: IPet[] = useSelector((state: RootState) => state.pets);
 
   return (
-    <main>
+    <ListPetsStyled>
       <ul className="container-filter">
         {filterButtons.map(({ text, image, action }) => (
           <FilterButton
@@ -58,16 +59,18 @@ const ListPets = (): JSX.Element => {
         )}
       </ul>
       <section className="container-pagination">
-        <label>
-          <button className="button--previous-page" onClick={previousPage} />
-          previous page button
-        </label>
-        <label>
-          <button className="button--next-page" onClick={nextPage} />
-          next page button
-        </label>
+        <img
+          src="./images/image-previous-page.svg"
+          alt="previous page"
+          onClick={previousPage}
+        />
+        <img
+          src="./images/image-next-page.svg"
+          alt="next page"
+          onClick={nextPage}
+        />
       </section>
-    </main>
+    </ListPetsStyled>
   );
 };
 
