@@ -3,7 +3,6 @@ import jwtDecode from "jwt-decode";
 import { User, UserToLogin, UserToRegister } from "../../types/userTypes";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
-import { getPetsThunk } from "./petsThunks";
 
 export const registerThunk =
   (newUserData: UserToRegister) => async (dispatch: AppDispatch) => {
