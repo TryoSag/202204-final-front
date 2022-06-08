@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import RouterRedirectList from "./components/RouterRedirectList/RouterRedirectList";
 import RouterRedirectLogin from "./components/RouterRedirectLogin/RouterRedirectLogin";
+import ListPage from "./pages/ListPage/ListPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
@@ -19,7 +20,7 @@ const App = () => (
         path="/list"
         element={
           <RouterRedirectLogin>
-            <Navigate to="/list" />
+            <ListPage />
           </RouterRedirectLogin>
         }
       />

@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../redux/store/store";
 import { loginThunk } from "../../redux/thunks/userThunks";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   const emptyLoginForm = {
     username: "",
