@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const ListPetsStyled = styled.main`
+  font-family: "Nunito", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;

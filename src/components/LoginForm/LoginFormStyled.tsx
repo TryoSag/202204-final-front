@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const LoginFormStyled = styled.form`
+  font-family: "Nunito", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

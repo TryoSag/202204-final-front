@@ -5,18 +5,33 @@ const HeaderStyled = styled.header`
   display: flex;
 
   .container--header-logo-title {
+    flex: 1;
     margin: 20px 20px 5px 10px;
   }
   > h1 {
+    flex: 4;
     margin-top: 30px;
     color: #ffb800;
   }
   .container--header-buttons {
-    right: 20px;
+    min-width: 80px;
+    margin-right: 10px;
+    flex: 1;
+
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+
     > button {
+      min-width: 80px;
+      border-radius: 10px;
+
+      background-color: #ffb800;
+      border-style: none;
+
+      font-family: "Nunito", sans-serif;
+      color: #fff;
+      font-size: 18px;
     }
   }
 `;

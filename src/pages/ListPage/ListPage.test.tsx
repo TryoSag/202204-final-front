@@ -6,7 +6,7 @@ import ListPage from "./ListPage";
 
 describe("Given the ListPage component", () => {
   describe("When it's called", () => {
-    test("Then it should render a heading with 'List of Pet's'", () => {
+    test("Then it should render a heading with 'Pet's'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
@@ -16,7 +16,7 @@ describe("Given the ListPage component", () => {
       );
 
       expect(
-        screen.getByRole("heading", { level: 1, name: "List of Pet's" })
+        screen.getByRole("heading", { level: 1, name: "Pet's" })
       ).toBeInTheDocument();
     });
   });

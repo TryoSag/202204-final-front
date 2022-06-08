@@ -19,7 +19,7 @@ const ListPage = (): JSX.Element => {
 
   return (
     <>
-      <Header pageName="List of Pet's" adminUser={adminUser} />
+      <Header pageName="Pet's" adminUser={adminUser} />
       <NavigationBar />
       <ListPets />
     </>

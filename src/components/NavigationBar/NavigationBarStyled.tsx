@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const NavigationBarStyled = styled.div`
+  font-family: "Nunito", sans-serif;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
