@@ -1,6 +1,9 @@
 import axios from "axios";
 import { checkPrime } from "crypto";
-import { getPetsActionCreator } from "../features/petsSlice";
+import {
+  deletePetActionCreator,
+  getPetsActionCreator,
+} from "../features/petsSlice";
 import { AppDispatch } from "../store/store";
 
 export const getPetsThunk =
@@ -25,5 +28,6 @@ export const deletePetThunk =
     });
 
     if (status === 200) {
+      dispatch(deletePetActionCreator(idToDelete));
     }
   };
