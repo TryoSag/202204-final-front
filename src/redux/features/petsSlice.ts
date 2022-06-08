@@ -10,9 +10,14 @@ const petsSlice = createSlice({
     getPets: (pets, action: PayloadAction<IPet[]>): IPet[] => [
       ...action.payload,
     ],
+    deletePet: (pets, action: PayloadAction<string>): IPet[] =>
+      pets.filter((pet: IPet) => pet.id !== action.payload),
   },
 });
 
-export const { getPets: getPetsActionCreator } = petsSlice.actions;
+export const {
+  getPets: getPetsActionCreator,
+  deletePet: deletePetActionCreator,
+} = petsSlice.actions;
 
 export default petsSlice.reducer;
