@@ -4,27 +4,25 @@ import Header from "./Header";
 describe("Given the Header component", () => {
   describe("When it's called", () => {
     test("Then it should render 1 image with the alternative text 'Pet's House logo'", () => {
-      render(<Header pageName={"List of Pet's"} adminUser={false} />);
+      render(<Header pageName={"Pet's"} adminUser={false} />);
 
       expect(screen.getByAltText("Pet's House logo")).toBeInTheDocument();
     });
   });
 
-  describe("When it's called and receives a pageName 'List of Pet's' and adminUser true", () => {
-    test("Then it should render 1 heading with the text 'List of Pet's'", () => {
-      render(<Header pageName={"List of Pet's"} adminUser={true} />);
+  describe("When it's called and receives a pageName 'Pet's' and adminUser true", () => {
+    test("Then it should render 1 heading with the text 'Pet's'", () => {
+      render(<Header pageName={"Pet's"} adminUser={true} />);
 
       expect(
-        screen.getByRole("heading", { level: 1, name: "List of Pet's" })
+        screen.getByRole("heading", { level: 1, name: "Pet's" })
       ).toBeInTheDocument();
     });
 
-    test("Then it should render 1 button with the text 'Create'", () => {
-      render(<Header pageName={"List of Pet's"} adminUser={true} />);
+    test("Then it should render 1 button with the text +New'", () => {
+      render(<Header pageName={"Pet's"} adminUser={true} />);
 
-      expect(
-        screen.getByRole("button", { name: "Create" })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "+New" })).toBeInTheDocument();
     });
   });
 
