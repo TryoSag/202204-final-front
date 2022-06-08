@@ -1,5 +1,4 @@
 import axios from "axios";
-import { checkPrime } from "crypto";
 import {
   deletePetActionCreator,
   getPetsActionCreator,
