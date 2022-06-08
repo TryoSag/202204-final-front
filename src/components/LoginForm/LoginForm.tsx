@@ -9,6 +9,13 @@ const LoginForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
+  const token: string | null = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      navigate("/list");
+    }
+  }, [navigate, token]);
+
   const emptyLoginForm = {
     username: "",
     password: "",

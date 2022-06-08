@@ -2,23 +2,23 @@ import { IPet } from "../types/petsTypes";
 
 export const listOfPets: IPet[] = [
   {
-    name: "test",
-    id: "test",
+    name: "test0",
+    id: "test0",
     animal: "dog",
     sex: "male",
-    picture: "test",
+    picture: "test0",
     age: 1,
-    description: "test",
-    specialTreatment: "test",
+    description: "test0",
+    specialTreatment: "test0",
   },
   {
-    name: "test",
-    id: "test",
+    name: "test1",
+    id: "test1",
     animal: "cat",
     sex: "female",
-    picture: "test",
+    picture: "test1",
     age: 2,
-    description: "test",
-    specialTreatment: "test",
+    description: "test1",
+    specialTreatment: "test1",
   },
 ];
