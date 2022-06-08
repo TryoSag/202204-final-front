@@ -1,5 +1,6 @@
 import { listOfPets } from "../../mocks/mockPets";
 import petsReducer, {
+  createPetActionCreator,
   deletePetActionCreator,
   getPetsActionCreator,
 } from "./petsSlice";
@@ -22,6 +23,20 @@ describe("Given the deletePetActionCreator function", () => {
       const expectedListLength = listOfPets.length - 1;
 
       const action = deletePetActionCreator(petToDeleteId);
+      const returnedListOfPets = petsReducer(listOfPets, action);
+
+      expect(returnedListOfPets).toHaveLength(expectedListLength);
+    });
+  });
+});
+
+describe("Given the createPetActionCreator function", () => {
+  describe("When it receives a new pet", () => {
+    test("Then it should return the list with the new Pet added", () => {
+      const newPet = listOfPets[0];
+      const expectedListLength = listOfPets.length + 1;
+
+      const action = createPetActionCreator(newPet);
       const returnedListOfPets = petsReducer(listOfPets, action);
 
       expect(returnedListOfPets).toHaveLength(expectedListLength);
