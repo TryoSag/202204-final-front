@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPet, PetData } from "../../types/petsTypes";
+import { PetData } from "../../types/petsTypes";
 import {
   createPetActionCreator,
   deletePetActionCreator,
