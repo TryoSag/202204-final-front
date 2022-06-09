@@ -19,7 +19,7 @@ export interface PetInList {
   sex: Sex;
 }
 
-export interface PetData {
+export interface IPetData {
   name: string;
   animal: Animal;
   sex: Sex;

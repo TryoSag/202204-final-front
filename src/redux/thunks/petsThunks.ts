@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PetData } from "../../types/petsTypes";
+import { IPetData } from "../../types/petsTypes";
 import {
   createPetActionCreator,
   deletePetActionCreator,
@@ -34,10 +34,11 @@ export const deletePetThunk =
   };
 
 export const createPetThunk =
-  (token: string, newPet: PetData) => async (dispatch: AppDispatch) => {
+  (token: string, newPet: IPetData) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/create`;
 
     const { data: createdPet, status } = await axios.post(url, {
+      newPet,
       headers: { authorization: `Bearer ${token}` },
     });
 
