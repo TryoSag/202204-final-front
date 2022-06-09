@@ -37,8 +37,7 @@ export const createPetThunk =
   (token: string, newPet: IPetData) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/create`;
 
-    const { data: createdPet, status } = await axios.post(url, {
-      newPet,
+    const { data: createdPet, status } = await axios.post(url, newPet, {
       headers: { authorization: `Bearer ${token}` },
     });
 
