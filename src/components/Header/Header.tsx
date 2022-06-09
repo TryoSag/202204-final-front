@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import HeaderStyled from "./HeaderStyled";
 
 interface HeaderProps {
@@ -6,6 +7,12 @@ interface HeaderProps {
 }
 
 const Header = ({ pageName, adminUser }: HeaderProps): JSX.Element => {
+  const navigate = useNavigate();
+
+  const create = () => {
+    navigate("/create");
+  };
+
   return (
     <HeaderStyled>
       <div className="container--header-logo-title">
@@ -13,7 +20,9 @@ const Header = ({ pageName, adminUser }: HeaderProps): JSX.Element => {
       </div>
       <h1>{pageName}</h1>
       <div className="container--header-buttons">
-        {adminUser && pageName === "Pet's" && <button>+New</button>}
+        {adminUser && pageName === "Pet's" && (
+          <button onClick={create}>+New</button>
+        )}
       </div>
     </HeaderStyled>
   );
