@@ -1,83 +1,145 @@
-const CreateEditForm = ({ pageName }: string): JSX.Element => {
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store/store";
+import { createPetThunk } from "../../redux/thunks/petsThunks";
+import { IPetData } from "../../types/petsTypes";
+
+interface PropCreateEditForm {
+  pageName: string;
+}
+
+const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
+  const dispatch: AppDispatch = useDispatch();
+
+  const token: string | null = localStorage.getItem("token");
+
+  const emptyCreateForm: IPetData = {
+    name: "",
+    animal: "dog",
+    sex: "male",
+    age: 0,
+    picture: "",
+    description: "",
+    specialTreatment: "",
+  };
+  const [formData, setFormData] = useState(emptyCreateForm);
+
+  const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setFormData({
+      ...formData,
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  const updateSelectForm = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
+    setFormData({
+      ...formData,
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  const formSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    if (pageName === "New Pet" && token)
+      dispatch(createPetThunk(token, formData));
+    setFormData(emptyCreateForm);
+  };
+
   return (
-    <form className="CreateEdit-form" autoComplete="off" onSubmit={} noValidate>
+    <form
+      className="CreateEdit-form"
+      autoComplete="off"
+      onSubmit={formSubmit}
+      noValidate
+    >
       <div>
-        <label htmlFor="Name">
+        <label htmlFor="name">
           Name
           <input
             type="text"
-            id="Name"
+            id="name"
             placeholder="Name"
-            value={formData}
-            onChange={}
+            value={formData.name}
+            onChange={updateForm}
           />
         </label>
-        <label htmlFor="Animal">
+        <label htmlFor="animal">
           Animal
           <select
-            id="Animal"
-            onChange={}
-            defaultValue={pageName === "New Pet" ? "" : formData}
+            id="animal"
+            onChange={updateSelectForm}
+            defaultValue={formData.animal}
           >
-            <option hidden value={""}></option>
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
           </select>
         </label>
-        <label htmlFor="Sex">
+        <label htmlFor="sex">
           Sex
           <select
-            id="Sex"
-            onChange={}
-            defaultValue={pageName === "New Pet" ? "" : formData}
+            id="sex"
+            onChange={updateSelectForm}
+            defaultValue={formData.sex}
           >
-            <option hidden value={""}></option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
         </label>
-        <label htmlFor="Age">
+        <label htmlFor="age">
           Age
           <input
             type="number"
-            id="Age"
+            id="age"
             placeholder="Age"
-            value={formData}
-            onChange={}
+            value={formData.age}
+            onChange={updateForm}
           />
         </label>
-        <label htmlFor="Picture">
+        <label htmlFor="picture">
           Picture
           <input
             type="text"
-            id="Picture"
+            id="picture"
             placeholder="Picture"
-            value={formData}
-            onChange={}
+            value={formData.picture}
+            onChange={updateForm}
           />
         </label>
       </div>
       <div>
-        <label htmlFor="Description">
+        <label htmlFor="description">
           Description
           <input
             type="text"
-            id="Description"
+            id="description"
             placeholder="Description"
-            value={formData}
-            onChange={}
+            value={formData.description}
+            onChange={updateForm}
           />
         </label>
-        <label htmlFor="SpecialTreatment">
+        <label htmlFor="specialTreatment">
           Special Treatment
           <input
             type="text"
-            id="SpecialTreatment"
+            id="specialTreatment"
             placeholder="SpecialTreatment"
-            value={formData}
-            onChange={}
+            value={formData.specialTreatment}
+            onChange={updateForm}
           />
         </label>
+        <button
+          type="submit"
+          disabled={
+            formData.name === "" ||
+            formData.picture === "" ||
+            formData.description === "" ||
+            formData.specialTreatment === ""
+          }
+        >
+          Enter
+        </button>
       </div>
     </form>
   );
