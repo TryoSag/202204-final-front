@@ -1,5 +1,7 @@
 import axios from "axios";
+import { PetData } from "../../types/petsTypes";
 import {
+  createPetActionCreator,
   deletePetActionCreator,
   getPetsActionCreator,
 } from "../features/petsSlice";
@@ -28,5 +30,18 @@ export const deletePetThunk =
 
     if (status === 200) {
       dispatch(deletePetActionCreator(idToDelete));
+    }
+  };
+
+export const createPetThunk =
+  (token: string, newPet: PetData) => async (dispatch: AppDispatch) => {
+    const url = `${process.env.REACT_APP_API_URL}/pets/create`;
+
+    const { data: createdPet, status } = await axios.post(url, {
+      headers: { authorization: `Bearer ${token}` },
+    });
+
+    if (status === 201) {
+      dispatch(createPetActionCreator(createdPet));
     }
   };

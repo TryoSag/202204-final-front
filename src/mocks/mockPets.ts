@@ -1,4 +1,4 @@
-import { IPet } from "../types/petsTypes";
+import { IPet, PetData } from "../types/petsTypes";
 
 export const listOfPets: IPet[] = [
   {
@@ -22,3 +22,13 @@ export const listOfPets: IPet[] = [
     specialTreatment: "test1",
   },
 ];
+
+export const testNewPet: PetData = {
+  name: "testNewPet",
+  animal: "dog",
+  sex: "female",
+  picture: "testNewPet",
+  age: 8,
+  description: "testNewPet",
+  specialTreatment: "testNewPet",
+};
