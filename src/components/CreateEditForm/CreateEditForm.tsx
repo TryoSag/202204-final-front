@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store/store";
 import { createPetThunk } from "../../redux/thunks/petsThunks";
 import { IPetData } from "../../types/petsTypes";
+import CreateEditFormStyled from "./CreateEditFormStyled";
 
 interface PropCreateEditForm {
   pageName: string;
@@ -48,7 +49,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
   };
 
   return (
-    <form
+    <CreateEditFormStyled
       className="CreateEdit-form"
       autoComplete="off"
       onSubmit={formSubmit}
@@ -137,7 +138,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
           Enter
         </button>
       </div>
-    </form>
+    </CreateEditFormStyled>
   );
 };
 
