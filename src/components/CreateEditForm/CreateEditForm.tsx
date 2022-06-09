@@ -70,7 +70,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
           <select
             id="animal"
             onChange={updateSelectForm}
-            defaultValue={formData.animal}
+            value={formData.animal}
           >
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
@@ -78,11 +78,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
         </label>
         <label htmlFor="sex">
           Sex
-          <select
-            id="sex"
-            onChange={updateSelectForm}
-            defaultValue={formData.sex}
-          >
+          <select id="sex" onChange={updateSelectForm} value={formData.sex}>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
