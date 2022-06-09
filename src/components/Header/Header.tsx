@@ -14,8 +14,6 @@ const Header = ({ pageName, adminUser }: HeaderProps): JSX.Element => {
       <h1>{pageName}</h1>
       <div className="container--header-buttons">
         {adminUser && pageName === "Pet's" && <button>+New</button>}
-        {adminUser && pageName === "More about" && <button>Edit</button>}
-        {adminUser && pageName === "More about" && <button>Delete</button>}
       </div>
     </HeaderStyled>
   );
