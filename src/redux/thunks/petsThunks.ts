@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPet } from "../../types/petsTypes";
+import { IPet, PetData } from "../../types/petsTypes";
 import {
   createPetActionCreator,
   deletePetActionCreator,
@@ -34,7 +34,7 @@ export const deletePetThunk =
   };
 
 export const createPetThunk =
-  (token: string, newPet: IPet) => async (dispatch: AppDispatch) => {
+  (token: string, newPet: PetData) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/create`;
 
     const { data: createdPet, status } = await axios.post(url, {

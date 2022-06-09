@@ -18,3 +18,13 @@ export interface PetInList {
   animal: Animal;
   sex: Sex;
 }
+
+export interface PetData {
+  name: string;
+  animal: Animal;
+  sex: Sex;
+  picture: string;
+  age: number;
+  description: string;
+  specialTreatment: string;
+}
