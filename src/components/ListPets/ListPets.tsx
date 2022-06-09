@@ -4,28 +4,15 @@ import { RootState } from "../../redux/store/store";
 import { IPet } from "../../types/petsTypes";
 import FilterButton from "../FilterButton/FilterButton";
 import Pet from "../Pets/Pet";
+import { filterButtons } from "../../utils/utils";
 import ListPetsStyled from "./ListPetsStyled";
 
 const ListPets = (): JSX.Element => {
   const [animalFilter, setAnimalFilter] = useState(["cat", "dog"]);
 
-  const filterButtons = [
-    {
-      text: "All",
-      image: "all",
-      action: () => setAnimalFilter(["cat", "dog"]),
-    },
-    {
-      text: "Dogs",
-      image: "dog",
-      action: () => setAnimalFilter(["dog"]),
-    },
-    {
-      text: "Cats",
-      image: "cat",
-      action: () => setAnimalFilter(["cat"]),
-    },
-  ];
+  const filteraction = (list: string[]): void => {
+    setAnimalFilter(list);
+  };
 
   const previousPage = () => {};
   const nextPage = () => {};
@@ -35,12 +22,13 @@ const ListPets = (): JSX.Element => {
   return (
     <ListPetsStyled>
       <ul className="container-filter">
-        {filterButtons.map(({ text, image, action }) => (
+        {filterButtons.map(({ text, image, list }) => (
           <FilterButton
             key={`filter ${text}`}
             text={text}
             image={image}
-            action={action}
+            action={filteraction}
+            list={list}
           />
         ))}
       </ul>
