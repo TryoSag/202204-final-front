@@ -51,7 +51,7 @@ export const editPetThunk =
   (token: string, modifiedPet: IPet) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/edit`;
 
-    const { status } = await axios.post(url, modifiedPet, {
+    const { status } = await axios.put(url, modifiedPet, {
       headers: { authorization: `Bearer ${token}` },
     });
 
