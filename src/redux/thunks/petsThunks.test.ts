@@ -76,7 +76,7 @@ describe("Given the editPetThunk function", () => {
       const token = "testToken";
       const modifiedPet = listOfPets[0];
       const dispatch = jest.fn();
-      const response = { status: 200 };
+      const response = { status: 204 };
       axios.put = jest.fn().mockResolvedValue(response);
 
       const expectedAction = editedPetActionCreator(modifiedPet);

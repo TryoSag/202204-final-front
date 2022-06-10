@@ -60,13 +60,13 @@ const CreateEditFormStyled = styled.form`
       width: 135%;
     }
     > label:nth-child(5) {
-      > input {
+      > textarea {
         height: 80px;
       }
     }
   }
   > div:nth-child(2) {
-    input {
+    textarea {
       height: 100px;
     }
   }
