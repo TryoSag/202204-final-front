@@ -2,6 +2,7 @@ import { listOfPets } from "../../mocks/mockPets";
 import petsReducer, {
   createPetActionCreator,
   deletePetActionCreator,
+  editPetActionCreator,
   getPetsActionCreator,
 } from "./petsSlice";
 
@@ -40,6 +41,21 @@ describe("Given the createPetActionCreator function", () => {
       const returnedListOfPets = petsReducer(listOfPets, action);
 
       expect(returnedListOfPets).toHaveLength(expectedListLength);
+    });
+  });
+});
+
+describe("Given the editPetActionCreator function", () => {
+  describe("When it receives a modified pet", () => {
+    test("Then it should return the list changing the modified pet", () => {
+      const modifiedPet = { ...listOfPets[0], name: "modifiedName" };
+      const expectedListOfPets = [modifiedPet, listOfPets[1]];
+
+      const action = editPetActionCreator(modifiedPet);
+      const returnedListOfPets = petsReducer(listOfPets, action);
+
+      expect(returnedListOfPets[0]).toEqual(expectedListOfPets[0]);
+      expect(returnedListOfPets[1]).toEqual(expectedListOfPets[1]);
     });
   });
 });

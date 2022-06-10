@@ -17,9 +17,7 @@ const petsSlice = createSlice({
       action.payload,
     ],
     editPet: (pets, action: PayloadAction<IPet>): IPet[] =>
-      pets.filter((pet) =>
-        pet.id !== action.payload.id ? pet : action.payload
-      ),
+      pets.map((pet) => (pet.id !== action.payload.id ? pet : action.payload)),
   },
 });
 
