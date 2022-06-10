@@ -2,10 +2,16 @@ import axios from "axios";
 import {
   createPetActionCreator,
   deletePetActionCreator,
+  editedPetActionCreator,
   getPetsActionCreator,
 } from "../features/petsSlice";
 import { listOfPets, testNewPet } from "../../mocks/mockPets";
-import { createPetThunk, deletePetThunk, getPetsThunk } from "./petsThunks";
+import {
+  createPetThunk,
+  deletePetThunk,
+  editPetThunk,
+  getPetsThunk,
+} from "./petsThunks";
 
 describe("Given the getPetsThunk function", () => {
   describe("When it's called and receives a token", () => {
@@ -57,6 +63,25 @@ describe("Given the createPetThunk function", () => {
       const expectedAction = createPetActionCreator(createdPet);
 
       const thunk = createPetThunk(token, newPet);
+      await thunk(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+});
+
+describe("Given the editPetThunk function", () => {
+  describe("When it's called and receives a token and a modifiedPet", () => {
+    test("Then it should call dispatch with editedPetActionCreator with the modifiedPet", async () => {
+      const token = "testToken";
+      const modifiedPet = listOfPets[0];
+      const dispatch = jest.fn();
+      const response = { status: 200 };
+      axios.put = jest.fn().mockResolvedValue(response);
+
+      const expectedAction = editedPetActionCreator(modifiedPet);
+
+      const thunk = editPetThunk(token, modifiedPet);
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
