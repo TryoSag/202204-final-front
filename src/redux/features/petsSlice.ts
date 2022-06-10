@@ -16,7 +16,7 @@ const petsSlice = createSlice({
       ...pets,
       action.payload,
     ],
-    editPet: (pets, action: PayloadAction<IPet>): IPet[] =>
+    editedPet: (pets, action: PayloadAction<IPet>): IPet[] =>
       pets.map((pet) => (pet.id !== action.payload.id ? pet : action.payload)),
   },
 });
@@ -25,7 +25,7 @@ export const {
   getPets: getPetsActionCreator,
   deletePet: deletePetActionCreator,
   createPet: createPetActionCreator,
-  editPet: editPetActionCreator,
+  editedPet: editedPetActionCreator,
 } = petsSlice.actions;
 
 export default petsSlice.reducer;

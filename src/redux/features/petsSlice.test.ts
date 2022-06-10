@@ -2,7 +2,7 @@ import { listOfPets } from "../../mocks/mockPets";
 import petsReducer, {
   createPetActionCreator,
   deletePetActionCreator,
-  editPetActionCreator,
+  editedPetActionCreator,
   getPetsActionCreator,
 } from "./petsSlice";
 
@@ -51,7 +51,7 @@ describe("Given the editPetActionCreator function", () => {
       const modifiedPet = { ...listOfPets[0], name: "modifiedName" };
       const expectedListOfPets = [modifiedPet, listOfPets[1]];
 
-      const action = editPetActionCreator(modifiedPet);
+      const action = editedPetActionCreator(modifiedPet);
       const returnedListOfPets = petsReducer(listOfPets, action);
 
       expect(returnedListOfPets[0]).toEqual(expectedListOfPets[0]);

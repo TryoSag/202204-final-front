@@ -1,8 +1,9 @@
 import axios from "axios";
-import { IPetData } from "../../types/petsTypes";
+import { IPet, IPetData } from "../../types/petsTypes";
 import {
   createPetActionCreator,
   deletePetActionCreator,
+  editedPetActionCreator,
   getPetsActionCreator,
 } from "../features/petsSlice";
 import { AppDispatch } from "../store/store";
@@ -43,5 +44,18 @@ export const createPetThunk =
 
     if (status === 201) {
       dispatch(createPetActionCreator(createdPet));
+    }
+  };
+
+export const editPetThunk =
+  (token: string, modifiedPet: IPet) => async (dispatch: AppDispatch) => {
+    const url = `${process.env.REACT_APP_API_URL}/pets/edit`;
+
+    const { status } = await axios.post(url, modifiedPet, {
+      headers: { authorization: `Bearer ${token}` },
+    });
+
+    if (status === 200) {
+      dispatch(editedPetActionCreator(modifiedPet));
     }
   };
