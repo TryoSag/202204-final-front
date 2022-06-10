@@ -29,6 +29,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ): void => {
     setFormData({
       ...formData,
@@ -38,8 +39,9 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
 
   const formSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (pageName === "New Pet" && token)
+    if (pageName === "New Pet" && token) {
       dispatch(createPetThunk(token, formData));
+    }
     setFormData(emptyCreateForm);
   };
 
@@ -87,34 +89,37 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
         </label>
         <label htmlFor="picture">
           Picture
-          <input
-            type="text"
+          <textarea
             id="picture"
             placeholder="Picture"
             value={formData.picture}
             onChange={updateForm}
+            cols={20}
+            rows={10}
           />
         </label>
       </div>
       <div>
         <label htmlFor="description">
           Description
-          <input
-            type="text"
+          <textarea
             id="description"
             placeholder="Description"
             value={formData.description}
             onChange={updateForm}
+            cols={30}
+            rows={10}
           />
         </label>
         <label htmlFor="specialTreatment">
           Special Treatment
-          <input
-            type="text"
+          <textarea
             id="specialTreatment"
             placeholder="SpecialTreatment"
             value={formData.specialTreatment}
             onChange={updateForm}
+            cols={30}
+            rows={10}
           />
         </label>
         <button
