@@ -2,7 +2,7 @@ export const filterButtons = [
   {
     text: "All",
     image: "all",
-    list: ["cat", "dog"],
+    list: ["dog", "cat"],
   },
   {
     text: "Dogs",

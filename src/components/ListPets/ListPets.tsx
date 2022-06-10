@@ -8,7 +8,7 @@ import { filterButtons } from "../../utils/utils";
 import ListPetsStyled from "./ListPetsStyled";
 
 const ListPets = (): JSX.Element => {
-  const [animalFilter, setAnimalFilter] = useState(["cat", "dog"]);
+  const [animalFilter, setAnimalFilter] = useState(["dog", "cat"]);
 
   const filteraction = (list: string[]): void => {
     setAnimalFilter(list);
