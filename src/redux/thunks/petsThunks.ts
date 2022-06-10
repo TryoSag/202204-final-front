@@ -55,7 +55,7 @@ export const editPetThunk =
       headers: { authorization: `Bearer ${token}` },
     });
 
-    if (status === 200) {
+    if (status === 204) {
       dispatch(editedPetActionCreator(modifiedPet));
     }
   };

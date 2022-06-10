@@ -25,15 +25,10 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
   };
   const [formData, setFormData] = useState(emptyCreateForm);
 
-  const updateForm = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setFormData({
-      ...formData,
-      [event.target.id]: event.target.value,
-    });
-  };
-
-  const updateSelectForm = (
-    event: React.ChangeEvent<HTMLSelectElement>
+  const updateForm = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ): void => {
     setFormData({
       ...formData,
@@ -68,18 +63,14 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
         </label>
         <label htmlFor="animal">
           Animal
-          <select
-            id="animal"
-            onChange={updateSelectForm}
-            value={formData.animal}
-          >
+          <select id="animal" onChange={updateForm} value={formData.animal}>
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
           </select>
         </label>
         <label htmlFor="sex">
           Sex
-          <select id="sex" onChange={updateSelectForm} value={formData.sex}>
+          <select id="sex" onChange={updateForm} value={formData.sex}>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
