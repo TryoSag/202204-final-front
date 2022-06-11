@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import RouterRedirectList from "./components/RouterRedirectList/RouterRedirectList";
 import RouterRedirectLogin from "./components/RouterRedirectLogin/RouterRedirectLogin";
 import CreatePage from "./pages/CreatePage/CreatePage";
+import EditPage from "./pages/EditPage/EditPage";
 import ListPage from "./pages/ListPage/ListPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -35,6 +36,16 @@ const App = () => {
             element={
               <RouterRedirectLogin>
                 <CreatePage />
+              </RouterRedirectLogin>
+            }
+          />
+        )}
+        {adminUser && (
+          <Route
+            path="/edit/:id"
+            element={
+              <RouterRedirectLogin>
+                <EditPage />
               </RouterRedirectLogin>
             }
           />
