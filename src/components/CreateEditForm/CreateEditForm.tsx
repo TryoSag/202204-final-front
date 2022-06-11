@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-
-import { AppDispatch } from "../../redux/store/store";
-import { createPetThunk } from "../../redux/thunks/petsThunks";
-import { IPetData } from "../../types/petsTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { AppDispatch, RootState } from "../../redux/store/store";
+import { createPetThunk, editPetThunk } from "../../redux/thunks/petsThunks";
+import { IPet, IPetData } from "../../types/petsTypes";
 import CreateEditFormStyled from "./CreateEditFormStyled";
 
 interface PropCreateEditForm {
@@ -12,8 +12,12 @@ interface PropCreateEditForm {
 
 const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
-
   const token: string | null = localStorage.getItem("token");
+
+  const pets: IPet[] = useSelector((state: RootState) => state.pets);
+  const { id } = useParams();
+  const idTofind = id?.replace(":", "");
+  const petToEdit = pets.find((pet) => pet.id === idTofind);
 
   const emptyCreateForm: IPetData = {
     name: "",
@@ -24,8 +28,11 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
     description: "",
     specialTreatment: "",
   };
-  const initialFormData =
-    pageName === "New Pet" ? emptyCreateForm : emptyCreateForm;
+
+  let initialFormData = emptyCreateForm;
+  if (pageName === "Edit Pet" && petToEdit) {
+    initialFormData = petToEdit;
+  }
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -45,8 +52,11 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
     event.preventDefault();
     if (pageName === "New Pet" && token) {
       dispatch(createPetThunk(token, formData));
+      setFormData(emptyCreateForm);
     }
-    setFormData(emptyCreateForm);
+    if (pageName === "Edit Pet" && token && id) {
+      dispatch(editPetThunk(token, { ...formData, id }));
+    }
   };
 
   return (

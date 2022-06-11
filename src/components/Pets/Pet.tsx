@@ -21,7 +21,7 @@ const Pet = ({
     dispatch(deletePetThunk(token, id));
   };
   const editClick = (): void => {
-    navigate(`/edit/${id}`);
+    navigate(`/edit:${id}`);
   };
 
   return (

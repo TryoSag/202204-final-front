@@ -42,7 +42,7 @@ const App = () => {
         )}
         {adminUser && (
           <Route
-            path="/edit/:id"
+            path="/edit:id"
             element={
               <RouterRedirectLogin>
                 <EditPage />
