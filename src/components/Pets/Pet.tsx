@@ -28,7 +28,7 @@ const Pet = ({
         <div>
           <img src="./images/icon-edit.svg" alt="edit icon" />
           <img
-            src="./images7icon-delete.svg"
+            src="./images/icon-delete.svg"
             alt="delete icon"
             onClick={deleteClick}
           />
