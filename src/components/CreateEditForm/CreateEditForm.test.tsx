@@ -105,10 +105,13 @@ describe("Given the CreateEditForm component", () => {
 
   describe("When it's called and all the inputs had valid information and clicked 'Enter' button", () => {
     test("Then it should reset the value on the inputs", () => {
+      const token = "testToken";
+      localStorage.setItem("token", token);
+
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <CreateEditForm pageName="test" />
+            <CreateEditForm pageName="New Pet" />
           </Provider>
         </BrowserRouter>
       );

@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../redux/store/store";
 import { deletePetThunk } from "../../redux/thunks/petsThunks";
 import { PetInList } from "../../types/petsTypes";
@@ -14,9 +15,13 @@ const Pet = ({
   adminUser,
 }: PetInList): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   const deleteClick = (): void => {
     dispatch(deletePetThunk(token, id));
+  };
+  const editClick = (): void => {
+    navigate(`/edit:${id}`);
   };
 
   return (
@@ -26,7 +31,11 @@ const Pet = ({
       </div>
       {adminUser && (
         <div>
-          <img src="./images/icon-edit.svg" alt="edit icon" />
+          <img
+            src="./images/icon-edit.svg"
+            alt="edit icon"
+            onClick={editClick}
+          />
           <img
             src="./images/icon-delete.svg"
             alt="delete icon"
