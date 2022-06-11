@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AppDispatch } from "../../redux/store/store";
 import { loginThunk } from "../../redux/thunks/userThunks";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const token: string | null = localStorage.getItem("token");
-  useEffect(() => {
-    if (token) {
-      navigate("/list");
-    }
-  }, [navigate, token]);
 
   const emptyLoginForm = {
     username: "",

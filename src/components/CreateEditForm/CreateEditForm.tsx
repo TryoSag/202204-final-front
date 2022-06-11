@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../redux/store/store";
 import { createPetThunk } from "../../redux/thunks/petsThunks";
 import { IPetData } from "../../types/petsTypes";
@@ -23,6 +24,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
     description: "",
     specialTreatment: "",
   };
+
   const [formData, setFormData] = useState(emptyCreateForm);
 
   const updateForm = (
