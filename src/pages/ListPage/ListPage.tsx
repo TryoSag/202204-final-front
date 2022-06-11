@@ -21,7 +21,7 @@ const ListPage = (): JSX.Element => {
     <>
       <Header pageName="Pet's" adminUser={adminUser} />
       <NavigationBar />
-      <ListPets />
+      {token && <ListPets token={token} />}
     </>
   );
 };

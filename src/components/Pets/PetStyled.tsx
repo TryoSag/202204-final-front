@@ -12,7 +12,7 @@ const PetStyled = styled.li`
 
   margin: 3%;
 
-  > div {
+  > div:nth-child(1) {
     height: 200px;
     width: 160px;
 
@@ -24,6 +24,21 @@ const PetStyled = styled.li`
       border-radius: 10px;
 
       object-fit: cover;
+    }
+  }
+  > div:nth-child(2) {
+    width: 160px;
+
+    display: flex;
+    justify-content: space-between;
+
+    position: absolute;
+
+    > img {
+      width: 30px;
+      height: 30px;
+
+      margin: 5px;
     }
   }
   > ul {

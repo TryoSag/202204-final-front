@@ -115,7 +115,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
           Special Treatment
           <textarea
             id="specialTreatment"
-            placeholder="SpecialTreatment"
+            placeholder="Special Treatment"
             value={formData.specialTreatment}
             onChange={updateForm}
             cols={30}

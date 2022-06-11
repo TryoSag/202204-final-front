@@ -8,7 +8,7 @@ describe("Given the ListPets component", () => {
     test("Then it should render a list of 3 buttons with images inside with the alternative text 'All icon', 'Cats icon' and 'Dogs icon'", () => {
       render(
         <Provider store={store}>
-          <ListPets />
+          <ListPets token={"testToken"} />
         </Provider>
       );
 
@@ -20,7 +20,7 @@ describe("Given the ListPets component", () => {
     test("Then it should render 2 images with the alternative text 'previous page' and 'next page'", () => {
       render(
         <Provider store={store}>
-          <ListPets />
+          <ListPets token={"testToken"} />
         </Provider>
       );
 
