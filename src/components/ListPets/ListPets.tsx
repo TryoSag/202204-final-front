@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
 import { IPet } from "../../types/petsTypes";
 import FilterButton from "../FilterButton/FilterButton";
-import Pet from "../Pets/Pet";
+import Pet from "../Pet/Pet";
 import { filterButtons } from "../../utils/utils";
 import ListPetsStyled from "./ListPetsStyled";
 
