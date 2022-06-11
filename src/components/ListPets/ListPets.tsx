@@ -7,7 +7,11 @@ import Pet from "../Pets/Pet";
 import { filterButtons } from "../../utils/utils";
 import ListPetsStyled from "./ListPetsStyled";
 
-const ListPets = (): JSX.Element => {
+interface propsListpets {
+  token: string;
+}
+
+const ListPets = ({ token }: propsListpets): JSX.Element => {
   const [animalFilter, setAnimalFilter] = useState(["dog", "cat"]);
 
   const filteraction = (list: string[]): void => {
@@ -18,6 +22,7 @@ const ListPets = (): JSX.Element => {
   const nextPage = () => {};
 
   const pets: IPet[] = useSelector((state: RootState) => state.pets);
+  const { adminUser } = useSelector((state: RootState) => state.user);
 
   return (
     <ListPetsStyled>
@@ -42,6 +47,9 @@ const ListPets = (): JSX.Element => {
                 picture={picture}
                 sex={sex}
                 animal={animal}
+                id={id}
+                token={token}
+                adminUser={adminUser}
               />
             )
         )}

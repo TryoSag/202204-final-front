@@ -17,6 +17,9 @@ export interface PetInList {
   picture: string;
   animal: Animal;
   sex: Sex;
+  id: string;
+  token: string;
+  adminUser: boolean;
 }
 
 export interface IPetData {
