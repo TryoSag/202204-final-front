@@ -23,7 +23,7 @@ export const getPetsThunk =
 
 export const deletePetThunk =
   (token: string, idToDelete: string) => async (dispatch: AppDispatch) => {
-    const url = `${process.env.REACT_APP_API_URL}/pets/:${idToDelete}`;
+    const url = `${process.env.REACT_APP_API_URL}/pets/${idToDelete}`;
 
     const { status } = await axios.delete(url, {
       headers: { authorization: `Bearer ${token}` },
