@@ -16,8 +16,9 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
 
   const pets: IPet[] = useSelector((state: RootState) => state.pets);
   const { id } = useParams();
-  const idTofind = id?.replace(":", "");
-  const petToEdit = pets.find((pet) => pet.id === idTofind);
+
+  const idToModify = id?.replace(":", "");
+  const petToEdit = pets.find((pet) => pet.id === idToModify);
 
   const emptyCreateForm: IPetData = {
     name: "",
@@ -54,8 +55,8 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
       dispatch(createPetThunk(token, formData));
       setFormData(emptyCreateForm);
     }
-    if (pageName === "Edit Pet" && token && id) {
-      dispatch(editPetThunk(token, { ...formData, id }));
+    if (pageName === "Edit Pet" && token && idToModify) {
+      dispatch(editPetThunk(token, { ...formData, id: idToModify }));
     }
   };
 
