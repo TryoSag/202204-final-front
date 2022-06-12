@@ -8,12 +8,12 @@ export const registerThunk =
   (newUserData: UserToRegister) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/user/register`;
 
-    const { data } = await axios.post<UserToRegister>(url, {
+    const { status, data } = await axios.post<UserToRegister>(url, {
       ...newUserData,
       adminUser: false,
     });
 
-    if (data) {
+    if (status === 201) {
       const userData: UserToLogin = {
         username: data.username,
         password: newUserData.password,
@@ -28,10 +28,11 @@ export const loginThunk =
     const url = `${process.env.REACT_APP_API_URL}/user/login`;
 
     const {
+      status,
       data: { token },
     } = await axios.post(url, userData);
 
-    if (token) {
+    if (status === 200) {
       localStorage.setItem("token", token);
 
       const { username, adminUser, eMail } = jwtDecode<User>(token);
