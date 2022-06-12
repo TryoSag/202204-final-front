@@ -23,4 +23,20 @@ describe("Given the RouterLimiter function", () => {
       expect(mockNavigate).toHaveBeenCalledWith("/list");
     });
   });
+
+  describe("When it's called and there are not a token on localStorage", () => {
+    test("Then it should don't call navigate", () => {
+      Object.defineProperty(window, "localStorage", {
+        value: { getItem: jest.fn(() => null) },
+      });
+
+      render(
+        <RouterRedirectList>
+          <p>test</p>
+        </RouterRedirectList>
+      );
+
+      expect(mockNavigate).not.toHaveBeenCalled();
+    });
+  });
 });

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
@@ -78,6 +79,37 @@ describe("Given the RegisterForm component", () => {
       );
 
       expect(screen.getByRole("link", { name: "Login" })).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's called and clicked 'Register' button", () => {
+    test("Then it should reset the value on the inputs", () => {
+      const testText = "test";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const nameInput = screen.getByLabelText("Name");
+      const usernameInput = screen.getByLabelText("Username");
+      const eMailInput = screen.getByLabelText("Email");
+      const passwordInput = screen.getByLabelText("Password");
+      const submitButton = screen.getByRole("button", { name: "Register" });
+
+      userEvent.type(nameInput, testText);
+      userEvent.type(usernameInput, testText);
+      userEvent.type(eMailInput, testText);
+      userEvent.type(passwordInput, testText);
+      userEvent.click(submitButton);
+
+      expect(nameInput).toHaveValue("");
+      expect(usernameInput).toHaveValue("");
+      expect(eMailInput).toHaveValue("");
+      expect(passwordInput).toHaveValue("");
     });
   });
 });

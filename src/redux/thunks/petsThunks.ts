@@ -12,11 +12,11 @@ export const getPetsThunk =
   (token: string) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets`;
 
-    const { data: pets } = await axios.get(url, {
+    const { status, data: pets } = await axios.get(url, {
       headers: { authorization: `Bearer ${token}` },
     });
 
-    if (pets) {
+    if (status === 200) {
       dispatch(getPetsActionCreator(pets));
     }
   };
@@ -38,7 +38,7 @@ export const createPetThunk =
   (token: string, newPet: IPetData) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/create`;
 
-    const { data: createdPet, status } = await axios.post(url, newPet, {
+    const { status, data: createdPet } = await axios.post(url, newPet, {
       headers: { authorization: `Bearer ${token}` },
     });
 

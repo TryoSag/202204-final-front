@@ -1,8 +1,15 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import Header from "./Header";
+
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
 
 describe("Given the Header component", () => {
   describe("When it's called", () => {
@@ -74,6 +81,24 @@ describe("Given the Header component", () => {
       );
 
       expect(screen.queryByRole("button")).toBeNull();
+    });
+  });
+
+  describe("When it's called and receives a pageName 'Pet's', adminUser true and a click on the button", () => {
+    test("Then it should call navigate", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Header pageName={"Pet's"} adminUser={true} />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const buttonToClick = screen.getByRole("button", { name: "+New" });
+
+      userEvent.click(buttonToClick);
+
+      expect(mockNavigate).toHaveBeenCalled();
     });
   });
 });
