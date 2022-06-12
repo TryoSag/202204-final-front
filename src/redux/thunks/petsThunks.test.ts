@@ -18,7 +18,7 @@ describe("Given the getPetsThunk function", () => {
     test("Then it should call dispatch with action", async () => {
       const token = "testToken";
       const dispatch = jest.fn();
-      const response = { data: listOfPets };
+      const response = { status: 200, data: listOfPets };
       axios.get = jest.fn().mockResolvedValue(response);
 
       const expectedAction = getPetsActionCreator(listOfPets);
@@ -27,6 +27,20 @@ describe("Given the getPetsThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe("When it's called and there are a problem with data base", () => {
+    test("Then it should don't call dispatch", async () => {
+      const token = "testToken";
+      const dispatch = jest.fn();
+      const response = { status: 404, data: listOfPets };
+      axios.get = jest.fn().mockResolvedValue(response);
+
+      const thunk = getPetsThunk(token);
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 });
@@ -46,6 +60,21 @@ describe("Given the deletePetThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe("When it's called and there are a problem with data base", () => {
+    test("Then it should don't call dispatch", async () => {
+      const token = "testToken";
+      const id = "testId";
+      const dispatch = jest.fn();
+      const response = { status: 404 };
+      axios.delete = jest.fn().mockResolvedValue(response);
+
+      const thunk = deletePetThunk(token, id);
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 });
@@ -68,6 +97,21 @@ describe("Given the createPetThunk function", () => {
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
   });
+
+  describe("When it's called and there are a problem with data base", () => {
+    test("Then it should don't call dispatch", async () => {
+      const token = "testToken";
+      const newPet = testNewPet;
+      const dispatch = jest.fn();
+      const response = { status: 404 };
+      axios.post = jest.fn().mockResolvedValue(response);
+
+      const thunk = createPetThunk(token, newPet);
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe("Given the editPetThunk function", () => {
@@ -85,6 +129,21 @@ describe("Given the editPetThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
+    });
+  });
+
+  describe("When it's called and there are a problem with data base", () => {
+    test("Then it should don't call dispatch", async () => {
+      const token = "testToken";
+      const modifiedPet = listOfPets[0];
+      const dispatch = jest.fn();
+      const response = { status: 404 };
+      axios.put = jest.fn().mockResolvedValue(response);
+
+      const thunk = editPetThunk(token, modifiedPet);
+      await thunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 });
