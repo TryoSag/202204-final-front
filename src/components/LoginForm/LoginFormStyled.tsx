@@ -48,7 +48,17 @@ const LoginFormStyled = styled.form`
 
       font-weight: bold;
       font-size: 20px;
+
+      :hover {
+        cursor: pointer;
+        transform: translateY(2px);
+      }
     }
+  }
+
+  @media (min-width: 600px) {
+    max-width: 600px;
+    margin-left: 100px;
   }
 `;
 

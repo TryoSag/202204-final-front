@@ -17,6 +17,7 @@ const Error404Styled = styled.main`
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(-20%);
 
     border-radius: 50px;
     background-color: #d9d9d9;
@@ -28,6 +29,11 @@ const Error404Styled = styled.main`
       text-align: center;
       font-size: 30px;
     }
+  }
+
+  @media (min-width: 600px) {
+    max-width: 600px;
+    margin-left: 100px;
   }
 `;
 
