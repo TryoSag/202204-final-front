@@ -1,10 +1,12 @@
+import Error404Styled from "./Error404Styled";
+
 const Error404 = (): JSX.Element => {
   return (
-    <main>
+    <Error404Styled>
       <div>
-        <span>Error 404</span>
+        <span>404 not found</span>
       </div>
-    </main>
+    </Error404Styled>
   );
 };
 
