@@ -52,12 +52,17 @@ const CreateEditFormStyled = styled.form`
 
       border-radius: 10px;
       border: none;
+
+      :hover {
+        cursor: pointer;
+        transform: translateY(2px);
+      }
     }
   }
 
   > div:nth-child(1) {
     select {
-      width: 135%;
+      width: 132%;
     }
     > label:nth-child(5) {
       > textarea {
@@ -68,6 +73,32 @@ const CreateEditFormStyled = styled.form`
   > div:nth-child(2) {
     textarea {
       height: 100px;
+    }
+  }
+
+  @media (min-width: 600px) {
+    max-width: 1200px;
+    min-height: 80vh;
+
+    margin-left: 100px;
+    flex-direction: row;
+
+    > div {
+      width: 50%;
+      min-height: 100%;
+    }
+
+    > div:nth-child(1) {
+      > label:nth-child(5) {
+        > textarea {
+          height: 100%;
+        }
+      }
+    }
+    > div:nth-child(2) {
+      textarea {
+        height: 100%;
+      }
     }
   }
 `;
