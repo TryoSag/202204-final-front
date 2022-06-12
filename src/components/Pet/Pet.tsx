@@ -23,11 +23,18 @@ const Pet = ({
   const editClick = (): void => {
     navigate(`/edit:${id}`);
   };
+  const detailClick = (): void => {
+    navigate(`/detail:${id}`);
+  };
 
   return (
     <PetStyled>
       <div>
-        <img src={picture} alt={`${animal} named ${name}`} />
+        <img
+          src={picture}
+          alt={`${animal} named ${name}`}
+          onClick={detailClick}
+        />
       </div>
       {adminUser && (
         <div>
