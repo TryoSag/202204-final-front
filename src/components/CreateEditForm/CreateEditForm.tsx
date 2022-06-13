@@ -17,9 +17,6 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
   const pets: IPet[] = useSelector((state: RootState) => state.pets);
   const { id } = useParams();
 
-  const idToModify = id?.replace(":", "");
-  const petToEdit = pets.find((pet) => pet.id === idToModify);
-
   const emptyCreateForm: IPetData = {
     name: "",
     animal: "dog",
@@ -29,6 +26,9 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
     description: "",
     specialTreatment: "",
   };
+
+  const idToModify = id?.replace(":", "");
+  const petToEdit = pets.find((pet) => pet.id === idToModify);
 
   let initialFormData = emptyCreateForm;
   if (pageName === "Edit Pet" && petToEdit) {

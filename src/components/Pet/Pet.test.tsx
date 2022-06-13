@@ -177,4 +177,30 @@ describe("Given the Pet component", () => {
       expect(mockDispatch).toHaveBeenCalled();
     });
   });
+
+  describe("When it's called and clicked in the image with the alternative text 'cat named nameTest'", () => {
+    test("Then it should call navigate with '/detail:test'", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Pet
+              name="nameTest"
+              picture="pictureTest"
+              sex="female"
+              animal="cat"
+              id="test"
+              token="testToken"
+              adminUser={true}
+            />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const petPicture = screen.getByAltText("cat named nameTest");
+
+      userEvent.click(petPicture);
+
+      expect(mockNavigate).toHaveBeenCalledWith("/detail:test");
+    });
+  });
 });
