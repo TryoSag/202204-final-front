@@ -4,6 +4,7 @@ import RouterRedirectList from "./components/RouterRedirectList/RouterRedirectLi
 import RouterRedirectLogin from "./components/RouterRedirectLogin/RouterRedirectLogin";
 import CreatePage from "./pages/CreatePage/CreatePage";
 import EditPage from "./pages/EditPage/EditPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ListPage from "./pages/ListPage/ListPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -50,6 +51,14 @@ const App = () => {
             }
           />
         )}
+        <Route
+          path="/error404"
+          element={
+            <RouterRedirectLogin>
+              <ErrorPage />
+            </RouterRedirectLogin>
+          }
+        />
         <Route
           path="/login"
           element={
