@@ -52,6 +52,14 @@ const App = () => {
           />
         )}
         <Route
+          path="/detail:id"
+          element={
+            <RouterRedirectLogin>
+              <DetailPage />
+            </RouterRedirectLogin>
+          }
+        />
+        <Route
           path="/login"
           element={
             <RouterRedirectList>

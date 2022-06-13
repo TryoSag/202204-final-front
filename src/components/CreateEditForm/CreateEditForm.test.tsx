@@ -1,7 +1,10 @@
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { listOfPets } from "../../mocks/mockPets";
+import { testUser } from "../../mocks/mockUsers";
 import store from "../../redux/store/store";
 import CreateEditForm from "./CreateEditForm";
 
@@ -11,10 +14,9 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockDispatch,
 }));
 
-const mockThunk = jest.fn();
-jest.mock("../../redux/thunks/petsThunks", () => ({
-  ...jest.requireActual("../../redux/thunks/petsThunks"),
-  createPetThunk: () => mockThunk,
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: () => ({ id: ":test1" }),
 }));
 
 describe("Given the CreateEditForm component", () => {
@@ -120,7 +122,7 @@ describe("Given the CreateEditForm component", () => {
     });
   });
 
-  describe("When it's called and all the inputs had valid information and clicked 'Enter' button", () => {
+  describe("When it's called and all the inputs had valid information and clicked 'Create' button", () => {
     test("Then it should reset the value on the inputs", () => {
       const token = "testToken";
       localStorage.setItem("token", token);
@@ -158,9 +160,9 @@ describe("Given the CreateEditForm component", () => {
     });
   });
 
-  describe("Whenit's called and receives pageName 'New Pet' and there are token in the local storage", () => {
-    describe("and all the inputs had correct data and clicked the 'Enter' button", () => {
-      test("Then it should call dispatch with createPetThunk with the token and the correct data", () => {
+  describe("When it's called and receives pageName 'New Pet' and there are token in the local storage", () => {
+    describe("and all the inputs had correct data and clicked the 'Create' button", () => {
+      test("Then it should call dispatch", () => {
         const token = "testToken";
         localStorage.setItem("token", token);
 
@@ -178,6 +180,48 @@ describe("Given the CreateEditForm component", () => {
         const specialTreatmentInput =
           screen.getByLabelText("Special Treatment");
         const submitButton = screen.getByRole("button", { name: "Create" });
+
+        userEvent.type(nameInput, "testText");
+        userEvent.type(pictureInput, "testText");
+        userEvent.type(descriptionInput, "testText");
+        userEvent.type(specialTreatmentInput, "testText");
+        userEvent.click(submitButton);
+
+        expect(mockDispatch).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe("When it's called and receives the pageName 'Edit Pet' and there are token in the local storage", () => {
+    describe("and id by params and all the inputs had correct data and clicked the 'Edit' button", () => {
+      test("Then it should call dispatch", () => {
+        const userMockSlice = createSlice({
+          name: "user",
+          initialState: testUser,
+          reducers: {},
+        });
+        const petsMockSlice = createSlice({
+          name: "pets",
+          initialState: listOfPets,
+          reducers: {},
+        });
+        const mockStore = configureStore({
+          reducer: { pets: petsMockSlice.reducer, user: userMockSlice.reducer },
+        });
+        render(
+          <BrowserRouter>
+            <Provider store={mockStore}>
+              <CreateEditForm pageName="Edit Pet" />
+            </Provider>
+          </BrowserRouter>
+        );
+
+        const nameInput = screen.getByLabelText("Name");
+        const pictureInput = screen.getByLabelText("Picture");
+        const descriptionInput = screen.getByLabelText("Description");
+        const specialTreatmentInput =
+          screen.getByLabelText("Special Treatment");
+        const submitButton = screen.getByRole("button", { name: "Edit" });
 
         userEvent.type(nameInput, "testText");
         userEvent.type(pictureInput, "testText");
