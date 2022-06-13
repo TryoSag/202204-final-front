@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "../../redux/store/store";
+import PetDetailStyled from "./PetDetailStyled";
 
 const PetDetail = (): JSX.Element => {
   const pets = useSelector((state: RootState) => state.pets);
@@ -28,7 +29,7 @@ const PetDetail = (): JSX.Element => {
     petData;
 
   return (
-    <main>
+    <PetDetailStyled>
       <ul>
         <li>
           <img src={picture} alt={`${animal} named ${name}`} />
@@ -57,7 +58,7 @@ const PetDetail = (): JSX.Element => {
           <button>Meet</button>
         </li>
       </ul>
-    </main>
+    </PetDetailStyled>
   );
 };
 
