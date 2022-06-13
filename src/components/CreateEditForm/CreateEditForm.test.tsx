@@ -89,17 +89,34 @@ describe("Given the CreateEditForm component", () => {
 
       expect(screen.getByLabelText("Special Treatment")).toBeInTheDocument();
     });
-
-    test("Then it should render a button with the text 'Enter'", () => {
+  });
+  describe("When it's called and receives the pageName 'New Pet'", () => {
+    test("Then it should render a button with the text 'Create'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
-            <CreateEditForm pageName="test" />
+            <CreateEditForm pageName="New Pet" />
           </Provider>
         </BrowserRouter>
       );
 
-      expect(screen.getByRole("button", { name: "Enter" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "Create" })
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's called and receives the pageName 'Edit Pet'", () => {
+    test("Then it should render a button with the text 'Edit'", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <CreateEditForm pageName="Edit Pet" />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
     });
   });
 
@@ -122,7 +139,7 @@ describe("Given the CreateEditForm component", () => {
       const pictureInput = screen.getByLabelText("Picture");
       const descriptionInput = screen.getByLabelText("Description");
       const specialTreatmentInput = screen.getByLabelText("Special Treatment");
-      const submitButton = screen.getByRole("button", { name: "Enter" });
+      const submitButton = screen.getByRole("button", { name: "Create" });
 
       userEvent.type(nameInput, "testText");
       userEvent.selectOptions(animalSelector, "cat");
@@ -160,7 +177,7 @@ describe("Given the CreateEditForm component", () => {
         const descriptionInput = screen.getByLabelText("Description");
         const specialTreatmentInput =
           screen.getByLabelText("Special Treatment");
-        const submitButton = screen.getByRole("button", { name: "Enter" });
+        const submitButton = screen.getByRole("button", { name: "Create" });
 
         userEvent.type(nameInput, "testText");
         userEvent.type(pictureInput, "testText");
