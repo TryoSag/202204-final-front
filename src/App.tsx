@@ -1,4 +1,5 @@
 import jwtDecode from "jwt-decode";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RouterRedirectList from "./components/RouterRedirectList/RouterRedirectList";
@@ -19,11 +20,14 @@ const App = () => {
   const token: string | null = localStorage.getItem("token");
   const dispatch: AppDispatch = useDispatch();
 
-  if (token) {
-    const userData = jwtDecode<User>(token);
+  useEffect(() => {
+    if (token) {
+      const userData = jwtDecode<User>(token);
 
-    dispatch(loginActionCreator(userData));
-  }
+      dispatch(loginActionCreator(userData));
+    }
+  }, [dispatch, token]);
+
   return (
     <>
       <Routes>
