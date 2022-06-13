@@ -12,6 +12,10 @@ const HeaderStyled = styled.header`
     flex: 4;
     margin-top: 30px;
     color: #ffb800;
+
+    @media (min-width: 600px) {
+      font-size: 50px;
+    }
   }
   .container--header-buttons {
     min-width: 80px;
@@ -24,6 +28,7 @@ const HeaderStyled = styled.header`
 
     > button {
       min-width: 80px;
+      max-width: 200px;
       border-radius: 10px;
 
       background-color: #ffb800;
@@ -32,6 +37,11 @@ const HeaderStyled = styled.header`
       font-family: "Nunito", sans-serif;
       color: #fff;
       font-size: 18px;
+
+      :hover {
+        cursor: pointer;
+        transform: translateY(2px);
+      }
     }
   }
 `;

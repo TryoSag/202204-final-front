@@ -29,6 +29,18 @@ const ListPetsStyled = styled.main`
 
       height: 40px;
       width: 40px;
+
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 600px) {
+    margin-left: 100px;
+    min-height: 80vh;
+    justify-content: space-between;
+
+    > ul {
+      padding-left: 20px;
     }
   }
 `;

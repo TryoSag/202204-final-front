@@ -1,8 +1,21 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import Pet from "./Pet";
+
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
+}));
 
 describe("Given the Pet component", () => {
   describe("When it's called and receives 'testName', 'testPicture', 'male' and 'dog'", () => {
@@ -110,6 +123,58 @@ describe("Given the Pet component", () => {
       );
 
       expect(screen.getByAltText("female icon")).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's called and clicked in the image with the alternative text 'edit icon'", () => {
+    test("Then it should call navigate", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Pet
+              name="nameTest"
+              picture="pictureTest"
+              sex="female"
+              animal="cat"
+              id="test"
+              token="testToken"
+              adminUser={true}
+            />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const editButton = screen.getByAltText("edit icon");
+
+      userEvent.click(editButton);
+
+      expect(mockNavigate).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's called and clicked in the image with the alternative text 'delete icon'", () => {
+    test("Then it should call dispatch", () => {
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <Pet
+              name="nameTest"
+              picture="pictureTest"
+              sex="female"
+              animal="cat"
+              id="test"
+              token="testToken"
+              adminUser={true}
+            />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const deleteButton = screen.getByAltText("delete icon");
+
+      userEvent.click(deleteButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });

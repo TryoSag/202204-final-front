@@ -15,6 +15,11 @@ const FilterButtonStyled = styled.li`
     background-color: #ffb800;
 
     border-radius: 10px;
+
+    :hover {
+      cursor: pointer;
+      transform: translateY(2px);
+    }
   }
   > span {
     font-size: 20px;
