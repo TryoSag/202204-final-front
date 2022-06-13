@@ -23,7 +23,8 @@ const Pet = ({
   const editClick = (): void => {
     navigate(`/edit:${id}`);
   };
-  const detailClick = (): void => {
+  const detailClick = (event: { stopPropagation: () => void }): void => {
+    event.stopPropagation();
     navigate(`/detail:${id}`);
   };
 
