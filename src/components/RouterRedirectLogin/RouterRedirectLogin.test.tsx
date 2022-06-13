@@ -23,20 +23,4 @@ describe("Given the RouterLimiter function", () => {
       expect(mockNavigate).toHaveBeenCalledWith("/login");
     });
   });
-
-  describe("When it's called and there are token on the local Storage", () => {
-    test("Then it should don't call navigate", () => {
-      Object.defineProperty(window, "localStorage", {
-        value: { getItem: jest.fn(() => "token") },
-      });
-
-      render(
-        <RouterRedirectLogin>
-          <p>test</p>
-        </RouterRedirectLogin>
-      );
-
-      expect(mockNavigate).not.toHaveBeenCalled();
-    });
-  });
 });
