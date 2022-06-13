@@ -1,5 +1,23 @@
-body {
+* {
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
   background-color: #ffb7004a;
+  font-family: "Nunito", sans-serif;
+}
+
+.Toastify {
+  --toastify-font-family: "Nunito", sans-serif;
+
+  --toastify-color-info: #afeef9;
+  --toastify-color-success: #dbf1ad;
+  --toastify-color-warning: #f3c370;
+  --toastify-color-error: #f1c6ad;
+}
+
+.Toastify__toast {
+  border-radius: 30px;
+  border: none;
 }
