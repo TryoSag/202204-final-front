@@ -146,7 +146,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
             formData.specialTreatment === ""
           }
         >
-          Enter
+          {pageName === "New Pet" ? "Create" : "Edit"}
         </button>
       </div>
     </CreateEditFormStyled>

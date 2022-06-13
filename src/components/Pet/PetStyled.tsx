@@ -39,6 +39,11 @@ const PetStyled = styled.li`
       height: 30px;
 
       margin: 5px;
+
+      :hover {
+        cursor: pointer;
+        transform: translateY(2px);
+      }
     }
   }
   > ul {
@@ -57,6 +62,10 @@ const PetStyled = styled.li`
         width: 20px;
       }
     }
+  }
+
+  @media (min-width: 600px) {
+    margin: 20px;
   }
 `;
 export default PetStyled;

@@ -4,9 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import EditPage from "./EditPage";
 
-describe("Given the CreatePage component", () => {
+describe("Given the EditPage component", () => {
   describe("When it's called", () => {
-    test("Then it should render a heading with 'New Pet'", () => {
+    test("Then it should render a heading with 'Edit Pet'", () => {
       render(
         <BrowserRouter>
           <Provider store={store}>
