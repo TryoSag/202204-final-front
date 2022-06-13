@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import jwtDecode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RouterRedirectList from "./components/RouterRedirectList/RouterRedirectList";
 import RouterRedirectLogin from "./components/RouterRedirectLogin/RouterRedirectLogin";
@@ -8,10 +9,21 @@ import EditPage from "./pages/EditPage/EditPage";
 import ListPage from "./pages/ListPage/ListPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import { RootState } from "./redux/store/store";
+import { loginActionCreator } from "./redux/features/userSlice";
+import { AppDispatch, RootState } from "./redux/store/store";
+import { User } from "./types/userTypes";
 
 const App = () => {
   const { adminUser } = useSelector((state: RootState) => state.user);
+
+  const token: string | null = localStorage.getItem("token");
+  const dispatch: AppDispatch = useDispatch();
+
+  if (token) {
+    const userData = jwtDecode<User>(token);
+
+    dispatch(loginActionCreator(userData));
+  }
   return (
     <>
       <Routes>
