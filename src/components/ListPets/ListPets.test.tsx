@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import store from "../../redux/store/store";
 import ListPets from "./ListPets";
@@ -26,6 +27,30 @@ describe("Given the ListPets component", () => {
 
       expect(screen.getByAltText("previous page")).toBeInTheDocument();
       expect(screen.getByAltText("next page")).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's called and receives a click on filter button", () => {
+    test("Then it should call mockSetState", () => {
+      const mockSetState = jest.fn();
+      const mockState = jest
+        .fn()
+        .mockReturnValue([["dog", "cat"], mockSetState]);
+      jest.mock("react", () => ({
+        ...jest.requireActual("react"),
+        useState: () => mockState,
+      }));
+
+      render(
+        <Provider store={store}>
+          <ListPets token={"testToken"} />
+        </Provider>
+      );
+
+      const filterButton = screen.getByAltText("All icon");
+      userEvent.click(filterButton);
+
+      expect(mockSetState).toHaveBeenCalled();
     });
   });
 });
