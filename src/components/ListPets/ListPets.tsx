@@ -11,18 +11,32 @@ interface propsListpets {
   token: string;
 }
 
+const petsInPage = 12;
+
 const ListPets = ({ token }: propsListpets): JSX.Element => {
+  const pets: IPet[] = useSelector((state: RootState) => state.pets);
+  const { adminUser } = useSelector((state: RootState) => state.user);
+
   const [animalFilter, setAnimalFilter] = useState(["dog", "cat"]);
 
   const filteraction = (list: string[]): void => {
     setAnimalFilter(list);
   };
 
-  const previousPage = () => {};
-  const nextPage = () => {};
+  const [pagination, setPagination] = useState(0);
 
-  const pets: IPet[] = useSelector((state: RootState) => state.pets);
-  const { adminUser } = useSelector((state: RootState) => state.user);
+  const previousPage = () => {
+    if (pagination !== 0) {
+      setPagination(pagination - 1);
+    }
+  };
+  const nextPage = () => {
+    if (pets.length >= petsInPage * pagination) {
+      setPagination(pagination + 1);
+    }
+  };
+
+  const petsInList = pets.slice(petsInPage * pagination, petsInPage);
 
   return (
     <ListPetsStyled>
@@ -38,7 +52,7 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
         ))}
       </ul>
       <ul>
-        {pets.map(
+        {petsInList.map(
           ({ name, picture, sex, animal, id }) =>
             animalFilter.includes(animal) && (
               <Pet
@@ -60,6 +74,7 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
           alt="previous page"
           onClick={previousPage}
         />
+        <span>{pagination}</span>
         <img
           src="./images/image-next-page.svg"
           alt="next page"
