@@ -52,14 +52,6 @@ const App = () => {
           />
         )}
         <Route
-          path="/error404"
-          element={
-            <RouterRedirectLogin>
-              <ErrorPage />
-            </RouterRedirectLogin>
-          }
-        />
-        <Route
           path="/login"
           element={
             <RouterRedirectList>
@@ -75,6 +67,7 @@ const App = () => {
             </RouterRedirectList>
           }
         />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>
   );
