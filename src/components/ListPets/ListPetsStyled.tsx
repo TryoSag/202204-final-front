@@ -24,13 +24,21 @@ const ListPetsStyled = styled.main`
 
     padding-bottom: 20px;
 
+    > span {
+      font-size: 20px;
+      margin: 10px;
+    }
+
     > img {
       margin: 10px;
 
       height: 40px;
       width: 40px;
 
-      cursor: pointer;
+      :hover {
+        cursor: pointer;
+        transform: translateY(2px);
+      }
     }
   }
 
