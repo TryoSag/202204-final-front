@@ -5,3 +5,8 @@ export const testUser: User = {
   adminUser: false,
   eMail: "t@t.t",
 };
+export const testAdmin: User = {
+  username: "testNameAdmin",
+  adminUser: true,
+  eMail: "t@t.t",
+};
