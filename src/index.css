@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #ffb7004a;
+  background-color: #efd1874a;
   font-family: "Nunito", sans-serif;
 }
 
@@ -21,16 +21,19 @@ body {
 .Toastify__toast--success {
   --toastify-color-light: #dbf1ad;
   --toastify-text-color-light: #42c71d;
+  --toastify-icon-color-success: #42c71d;
 }
 
 .Toastify__toast--warning {
-  --toastify-color-light: #f3c370;
+  --toastify-color-light: #f6d296;
   --toastify-text-color-light: #e8910f;
+  --toastify-icon-color-warning: #e8910f;
 }
 
 .Toastify__toast--error {
   --toastify-color-light: #fc8279;
   --toastify-text-color-light: #d11036;
+  --toastify-icon-color-error: #d11036;
 }
 
 div.Toastify__toast {
