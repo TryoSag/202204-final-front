@@ -6,6 +6,7 @@ import FilterButton from "../FilterButton/FilterButton";
 import Pet from "../Pet/Pet";
 import { filterButtons } from "../../utils/utils";
 import ListPetsStyled from "./ListPetsStyled";
+import { toast } from "react-toastify";
 
 interface propsListpets {
   token: string;
@@ -31,8 +32,10 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
     }
   };
   const nextPage = () => {
-    if (pets.length >= petsInPage * pagination) {
+    if (pets.length >= petsInPage * (pagination + 1)) {
       setPagination(pagination + 1);
+    } else {
+      toast.warning("No more pets");
     }
   };
 
