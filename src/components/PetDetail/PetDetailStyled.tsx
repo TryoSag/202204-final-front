@@ -85,6 +85,7 @@ const PetDetailStyled = styled.main`
 
         > img {
           border-radius: 50px;
+          max-height: 65vh;
         }
       }
       > li:nth-child(1) {
