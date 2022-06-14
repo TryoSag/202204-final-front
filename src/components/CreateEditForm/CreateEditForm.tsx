@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AppDispatch, RootState } from "../../redux/store/store";
 import { createPetThunk, editPetThunk } from "../../redux/thunks/petsThunks";
 import { IPet, IPetData } from "../../types/petsTypes";
@@ -12,6 +13,7 @@ interface PropCreateEditForm {
 
 const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
   const token: string | null = localStorage.getItem("token");
 
   const pets: IPet[] = useSelector((state: RootState) => state.pets);
@@ -51,12 +53,22 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
 
   const formSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (pageName === "New Pet" && token) {
-      dispatch(createPetThunk(token, formData));
-      setFormData(emptyCreateForm);
-    }
-    if (pageName === "Edit Pet" && token && idToModify) {
-      dispatch(editPetThunk(token, { ...formData, id: idToModify }));
+    if (
+      formData.name !== "" ||
+      formData.picture !== "" ||
+      formData.description !== "" ||
+      formData.specialTreatment !== ""
+    ) {
+      if (pageName === "New Pet" && token) {
+        dispatch(createPetThunk(token, formData));
+        setFormData(emptyCreateForm);
+      }
+      if (pageName === "Edit Pet" && token && idToModify) {
+        dispatch(editPetThunk(token, { ...formData, id: idToModify }));
+      }
+      navigate("/list");
+    } else {
+      toast.warning("There are fields without filling");
     }
   };
 
@@ -137,15 +149,7 @@ const CreateEditForm = ({ pageName }: PropCreateEditForm): JSX.Element => {
             rows={10}
           />
         </label>
-        <button
-          type="submit"
-          disabled={
-            formData.name === "" ||
-            formData.picture === "" ||
-            formData.description === "" ||
-            formData.specialTreatment === ""
-          }
-        >
+        <button type="submit">
           {pageName === "New Pet" ? "Create" : "Edit"}
         </button>
       </div>

@@ -39,7 +39,7 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
     }
   };
 
-  const petsInList = pets.slice(petsInPage * pagination, petsInPage);
+  let petsInList = pets.slice(petsInPage * pagination, petsInPage);
 
   return (
     <ListPetsStyled>

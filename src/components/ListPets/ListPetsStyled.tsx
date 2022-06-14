@@ -17,6 +17,9 @@ const ListPetsStyled = styled.main`
     display: flex;
     flex-wrap: wrap;
   }
+  > ul:nth-child(2) {
+    justify-content: center;
+  }
 
   > section {
     display: flex;
@@ -49,6 +52,9 @@ const ListPetsStyled = styled.main`
 
     > ul {
       padding-left: 20px;
+    }
+    > ul:nth-child(2) {
+      justify-content: flex-start;
     }
   }
 `;

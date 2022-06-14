@@ -12,19 +12,21 @@ import { AppDispatch } from "../store/store";
 export const getPetsThunk =
   (token: string) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets`;
-    try {
-      const idLoading = toast.loading("Loading...", { isLoading: true });
+    const idLoading = toast.loading("Loading...", { isLoading: true });
 
+    try {
       const { status, data: pets } = await axios.get(url, {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      toast.dismiss(idLoading);
-
       if (status === 200) {
+        toast.dismiss(idLoading);
+
         dispatch(getPetsActionCreator(pets));
       }
     } catch {
+      toast.dismiss(idLoading);
+
       toast.error("No pets found");
     }
   };
@@ -32,21 +34,23 @@ export const getPetsThunk =
 export const deletePetThunk =
   (token: string, idToDelete: string) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/${idToDelete}`;
-    try {
-      const idLoading = toast.loading("Loading...", { isLoading: true });
+    const idLoading = toast.loading("Loading...", { isLoading: true });
 
+    try {
       const { status } = await axios.delete(url, {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      toast.dismiss(idLoading);
-
       if (status === 200) {
+        toast.dismiss(idLoading);
+
         dispatch(deletePetActionCreator(idToDelete));
 
         toast.success("Pet deleted");
       }
     } catch {
+      toast.dismiss(idLoading);
+
       toast.error("Error deleting Pet");
     }
   };
@@ -54,21 +58,23 @@ export const deletePetThunk =
 export const createPetThunk =
   (token: string, newPet: IPetData) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/create`;
-    try {
-      const idLoading = toast.loading("Loading...", { isLoading: true });
+    const idLoading = toast.loading("Loading...", { isLoading: true });
 
+    try {
       const { status, data: createdPet } = await axios.post(url, newPet, {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      toast.dismiss(idLoading);
-
       if (status === 201) {
+        toast.dismiss(idLoading);
+
         dispatch(createPetActionCreator(createdPet));
 
         toast.success("Pet created");
       }
     } catch {
+      toast.dismiss(idLoading);
+
       toast.error("Error creating Pet");
     }
   };
@@ -76,21 +82,23 @@ export const createPetThunk =
 export const editPetThunk =
   (token: string, modifiedPet: IPet) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/pets/edit`;
-    try {
-      const idLoading = toast.loading("Loading...", { isLoading: true });
+    const idLoading = toast.loading("Loading...", { isLoading: true });
 
+    try {
       const { status } = await axios.put(url, modifiedPet, {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      toast.dismiss(idLoading);
-
       if (status === 204) {
+        toast.dismiss(idLoading);
+
         dispatch(editedPetActionCreator(modifiedPet));
 
         toast.success("Pet edited");
       }
     } catch {
+      toast.dismiss(idLoading);
+
       toast.error("Error editing Pet");
     }
   };
