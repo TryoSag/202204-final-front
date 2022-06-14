@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
 import { User, UserToLogin, UserToRegister } from "../../types/userTypes";
 import { loginActionCreator } from "../features/userSlice";
 import { AppDispatch } from "../store/store";
@@ -7,6 +8,8 @@ import { AppDispatch } from "../store/store";
 export const registerThunk =
   (newUserData: UserToRegister) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/user/register`;
+
+    const idLoading = toast.loading("Loading...", { isLoading: true });
 
     const { status, data } = await axios.post<UserToRegister>(url, {
       ...newUserData,
@@ -19,13 +22,20 @@ export const registerThunk =
         password: newUserData.password,
       };
 
+      toast.dismiss(idLoading);
+      toast.success(`${data.username} registered`);
+
       dispatch(loginThunk(userData));
+    } else {
+      toast.error("Error on register");
     }
   };
 
 export const loginThunk =
   (userData: UserToLogin) => async (dispatch: AppDispatch) => {
     const url = `${process.env.REACT_APP_API_URL}/user/login`;
+
+    const idLoading = toast.loading("Loading...", { isLoading: true });
 
     const {
       status,
@@ -37,6 +47,11 @@ export const loginThunk =
 
       const { username, adminUser, eMail } = jwtDecode<User>(token);
 
+      toast.dismiss(idLoading);
+      toast.success(` Welcome ${username}`);
+
       dispatch(loginActionCreator({ username, adminUser, eMail }));
+    } else {
+      toast.error("Error on login");
     }
   };

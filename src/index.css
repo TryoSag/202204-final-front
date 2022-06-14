@@ -11,13 +11,38 @@ body {
 .Toastify {
   --toastify-font-family: "Nunito", sans-serif;
 
-  --toastify-color-info: #afeef9;
-  --toastify-color-success: #dbf1ad;
-  --toastify-color-warning: #f3c370;
-  --toastify-color-error: #f1c6ad;
+  --toastify-toast-min-height: 20vh;
+
+  --toastify-color-light: #afeef9;
+  --toastify-text-color-light: #3660de;
+  --toastify-spinner-color: #3660de;
 }
 
-.Toastify__toast {
+.Toastify__toast--success {
+  --toastify-color-light: #dbf1ad;
+  --toastify-text-color-light: #42c71d;
+}
+
+.Toastify__toast--warning {
+  --toastify-color-light: #f3c370;
+  --toastify-text-color-light: #e8910f;
+}
+
+.Toastify__toast--error {
+  --toastify-color-light: #fc8279;
+  --toastify-text-color-light: #d11036;
+}
+
+div.Toastify__toast {
+  text-align: center;
   border-radius: 30px;
+  font-size: 25px;
   border: none;
+}
+
+@media only screen and (max-width: 480px) {
+  div.Toastify__toast {
+    border-radius: 30px;
+    margin-top: 50px;
+  }
 }
