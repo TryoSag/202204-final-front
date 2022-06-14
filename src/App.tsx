@@ -5,6 +5,7 @@ import RouterRedirectLogin from "./components/RouterRedirectLogin/RouterRedirect
 import CreatePage from "./pages/CreatePage/CreatePage";
 import DetailPage from "./pages/DetailPage/DetailPage";
 import EditPage from "./pages/EditPage/EditPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ListPage from "./pages/ListPage/ListPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
@@ -75,6 +76,7 @@ const App = () => {
             </RouterRedirectList>
           }
         />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>
   );
