@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
 import LoginPage from "./LoginPage";
+import TestRenderer from "react-test-renderer";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
@@ -53,6 +54,18 @@ describe("Given the LoginPage page", () => {
         </BrowserRouter>
       );
       expect(mockNavigate).toHaveBeenCalled();
+    });
+
+    test("Then it should match with the snapshot", () => {
+      const loginPageSnapshot = TestRenderer.create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <LoginPage />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      expect(loginPageSnapshot).toMatchSnapshot();
     });
   });
 });
