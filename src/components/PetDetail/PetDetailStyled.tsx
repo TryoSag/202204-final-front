@@ -15,6 +15,8 @@ const PetDetailStyled = styled.main`
 
       > img {
         border-radius: 50px 50px 0 0;
+        overflow: hidden;
+        object-fit: cover;
       }
 
       > ul {
@@ -98,12 +100,12 @@ const PetDetailStyled = styled.main`
         > ul {
           min-height: 70vh;
           > li:nth-child(3) {
-            height: 25vh;
+            min-height: 25vh;
           }
         }
       }
       > li:nth-child(3) {
-        width: 10%;
+        width: 100px;
         min-height: 75vh;
 
         display: flex;
