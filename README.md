@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# Pet's House App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://pets-house-albert-sagol.netlify.app/list
 
-## Available Scripts
+## Purpose:
 
-In the project directory, you can run:
+Front-end React app, made with typescript and styled components, full tested and build to work with a API and manage a list of Pets and their information, with two user tiers.
 
-### `npm start`
+Tier User: Only have the acces to the list and pets information
+Tier Admin: They have the same access as users and can also create, edit and delete the pets.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### App components
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Login Page
 
-### `npm test`
+  - Header with the title
+  - Form to enter the data
+    - Username and password
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Register Page to create a new User
 
-### `npm run build`
+  - Header with the title
+  - Form to enter the data
+    - Name, username, password and email
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- List Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - Header with the title
+    - And the button to create if you are Admin
+  - Navigation Bar with icon to list and icon to logout
+  - List of pets with maximum of 12 pets each page
+    - Filter to choose type of animal or both
+    - Pets in list with picture, name and sex
+      - And the buttons to edit or delete if you are Admin
+    - Pagination with icon to next or previous page and the number of actual  
+      page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Create Page
 
-### `npm run eject`
+  - Header with the title
+  - Navigation Bar with icon to list and icon to logout
+  - Form to enter the data
+    - Name, animal, sex, age, picture, description and special treatment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Edit Page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - Header with the title
+  - Navigation Bar with icon to list and icon to logout
+  - Form to change the actual data
+    - Name, animal, sex, age, picture, description and special treatment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Detail Page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  - Header with the title
+  - Navigation Bar with icon to list and icon to logout
+  - List of detail of the selected pet
+    - Name, animal, sex, age, picture, description and special treatment
 
-## Learn More
+- Error Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - Header with the title
+  - Navigation Bar with icon to list and icon to logout
+  - Message of "404 not found"
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- User feedback and errors
+  - Made with toastify

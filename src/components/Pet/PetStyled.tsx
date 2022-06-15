@@ -24,6 +24,8 @@ const PetStyled = styled.li`
       border-radius: 10px;
 
       object-fit: cover;
+
+      cursor: pointer;
     }
   }
   > div:nth-child(2) {
