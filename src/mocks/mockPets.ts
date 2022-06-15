@@ -32,3 +32,21 @@ export const testNewPet: IPetData = {
   description: "testNewPet",
   specialTreatment: "testNewPet",
 };
+
+export const testPetsGenerator = (numberOfPets: number) => {
+  const testList = [];
+
+  for (let i = 0; i < numberOfPets; i++) {
+    testList.push({
+      name: `testName${i}`,
+      id: `testId${i}`,
+      animal: i % 2 === 0 ? "dog" : "cat",
+      sex: i % 3 === 0 ? "male" : "female",
+      picture: `testPicture${i}`,
+      age: i,
+      description: `testDescription${i}`,
+      specialTreatment: `testSpecialTreatment${i}`,
+    });
+  }
+  return testList as IPet[];
+};
