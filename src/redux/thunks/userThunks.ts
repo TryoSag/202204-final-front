@@ -16,13 +16,13 @@ export const registerThunk =
         adminUser: false,
       });
 
+      toast.dismiss(idLoading);
+
       if (status === 201) {
         const userData: UserToLogin = {
           username: data.username,
           password: newUserData.password,
         };
-        toast.dismiss(idLoading);
-
         toast.success(`${data.username} registered`);
 
         dispatch(loginThunk(userData));
@@ -45,12 +45,12 @@ export const loginThunk =
         data: { token },
       } = await axios.post(url, userData);
 
+      toast.dismiss(idLoading);
+
       if (status === 200) {
         localStorage.setItem("token", token);
 
         const { username, adminUser, eMail } = jwtDecode<User>(token);
-
-        toast.dismiss(idLoading);
 
         toast.success(` Welcome ${username}`);
 
