@@ -11,7 +11,7 @@ const HeaderStyled = styled.header`
   > h1 {
     flex: 4;
     margin-top: 30px;
-    color: #ffb800;
+    color: #ff8000;
 
     @media (min-width: 600px) {
       font-size: 50px;
@@ -31,7 +31,7 @@ const HeaderStyled = styled.header`
       max-width: 200px;
       border-radius: 10px;
 
-      background-color: #ffb800;
+      background-color: #ff8000;
       border-style: none;
 
       font-family: "Nunito", sans-serif;
