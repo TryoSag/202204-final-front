@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store/store";
 import { IPet } from "../../types/petsTypes";
@@ -7,6 +6,7 @@ import Pet from "../Pet/Pet";
 import { filterButtons } from "../../utils/utils";
 import ListPetsStyled from "./ListPetsStyled";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 interface propsListpets {
   token: string;
@@ -26,11 +26,20 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
 
   const [pagination, setPagination] = useState(0);
 
+  const [pageList, setPageList] = useState(pets.slice(pagination, petsInPage));
+
+  useEffect(() => {
+    setPageList(
+      pets.slice(petsInPage * pagination, petsInPage * (pagination + 1))
+    );
+  }, [pagination, pets]);
+
   const previousPage = () => {
     if (pagination !== 0) {
       setPagination(pagination - 1);
     }
   };
+
   const nextPage = () => {
     if (pets.length >= petsInPage * (pagination + 1)) {
       setPagination(pagination + 1);
@@ -38,8 +47,6 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
       toast.warning("No more pets");
     }
   };
-
-  let petsInList = pets.slice(petsInPage * pagination, petsInPage);
 
   return (
     <ListPetsStyled>
@@ -55,7 +62,7 @@ const ListPets = ({ token }: propsListpets): JSX.Element => {
         ))}
       </ul>
       <ul>
-        {petsInList.map(
+        {pageList.map(
           ({ name, picture, sex, animal, id }) =>
             animalFilter.includes(animal) && (
               <Pet

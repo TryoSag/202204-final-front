@@ -1,18 +1,27 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import { Provider } from "react-redux";
 import { listOfPets } from "../../mocks/mockPets";
 import { testUser } from "../../mocks/mockUsers";
 import store from "../../redux/store/store";
+import { IPet } from "../../types/petsTypes";
 import ListPets from "./ListPets";
 
-const mockState = ["dog", "cat"];
-const mockSetState = jest.fn();
-jest.mock("react", () => ({
-  ...jest.requireActual("react"),
-  useState: () => [mockState, mockSetState],
-}));
+const mockSetStateFilter = jest.fn();
+const mockSetStatePageList = jest.fn();
+const mockSetStatePagination = jest.fn();
+const mockFilter: any = (init: string[]) => [init, mockSetStateFilter];
+const mockPageList: any = (init: IPet) => [init, mockSetStatePageList];
+const mockFPagination: any = (init: number) => [init, mockSetStatePagination];
+beforeEach(() => {
+  jest
+    .spyOn(React, "useState")
+    .mockImplementationOnce(mockFilter)
+    .mockImplementationOnce(mockPageList)
+    .mockImplementationOnce(mockFPagination);
+});
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -20,6 +29,32 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Given the ListPets component", () => {
+  describe("When it's called and there are a pet in store", () => {
+    test("Then it should render a image with alternative text 'dog named test0'", () => {
+      const userMockSlice = createSlice({
+        name: "user",
+        initialState: testUser,
+        reducers: {},
+      });
+      const petsMockSlice = createSlice({
+        name: "pets",
+        initialState: listOfPets,
+        reducers: {},
+      });
+      const mockStore = configureStore({
+        reducer: { pets: petsMockSlice.reducer, user: userMockSlice.reducer },
+      });
+
+      render(
+        <Provider store={mockStore}>
+          <ListPets token={"testToken"} />
+        </Provider>
+      );
+
+      expect(screen.getByAltText("dog named test0")).toBeInTheDocument();
+    });
+  });
+
   describe("When it's called", () => {
     test("Then it should render a list of 3 buttons with images inside with the alternative text 'All icon', 'Cats icon' and 'Dogs icon'", () => {
       render(
@@ -56,33 +91,7 @@ describe("Given the ListPets component", () => {
       const filterButton = screen.getByAltText("All icon");
       userEvent.click(filterButton);
 
-      expect(mockSetState).toHaveBeenCalled();
-    });
-  });
-
-  describe("When it's called and there are a pet in store", () => {
-    test("Then it should render a image with alternative text 'dog named test0'", () => {
-      const userMockSlice = createSlice({
-        name: "user",
-        initialState: testUser,
-        reducers: {},
-      });
-      const petsMockSlice = createSlice({
-        name: "pets",
-        initialState: listOfPets,
-        reducers: {},
-      });
-      const mockStore = configureStore({
-        reducer: { pets: petsMockSlice.reducer, user: userMockSlice.reducer },
-      });
-
-      render(
-        <Provider store={mockStore}>
-          <ListPets token={"testToken"} />
-        </Provider>
-      );
-
-      expect(screen.getByAltText("dog named test0")).toBeInTheDocument();
+      expect(mockSetStateFilter).toHaveBeenCalled();
     });
   });
 });
