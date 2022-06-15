@@ -49,3 +49,12 @@ div.Toastify__toast {
     margin-top: 50px;
   }
 }
+
+@media (min-width: 600px) {
+  body {
+    background-image: url("../public/images/image-background.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
