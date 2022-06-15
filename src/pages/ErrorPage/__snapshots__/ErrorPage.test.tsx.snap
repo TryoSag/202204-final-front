@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given the ErrorPage component When it's called Then it should match with the snapshot 1`] = `
+Array [
+  <header
+    className="sc-gsnTZi jxSYoa"
+  >
+    <div
+      className="container--header-logo-title"
+    >
+      <img
+        alt="Pet's House logo"
+        src="./images/logo.svg"
+      />
+    </div>
+    <h1>
+      Error
+    </h1>
+    <div
+      className="container--header-buttons"
+    />
+  </header>,
+  <div
+    className="sc-dkzDqf ivpBhO"
+  >
+    <div
+      className="nav__container--list"
+    >
+      <img
+        alt="home icon"
+        onClick={[Function]}
+        src="./images/icon-home.svg"
+      />
+      <span>
+        List
+      </span>
+    </div>
+    <div
+      className="nav__container--logout"
+    >
+      <img
+        alt="logout icon"
+        onClick={[Function]}
+        src="./images/icon-logout.svg"
+      />
+      <span>
+        Logout
+      </span>
+    </div>
+  </div>,
+  <main
+    className="sc-bczRLJ cSJOOb"
+  >
+    <div>
+      <span>
+        404 not found
+      </span>
+    </div>
+  </main>,
+]
+`;
