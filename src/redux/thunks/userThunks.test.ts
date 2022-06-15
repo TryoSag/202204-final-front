@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { loginActionCreator } from "../features/userSlice";
 import { loginThunk, registerThunk } from "./userThunks";
 
@@ -46,6 +47,25 @@ describe("Given the registerThunk function", () => {
       expect(dispatch).not.toHaveBeenCalled();
     });
   });
+
+  describe("When it's called and there are a problem on the API", () => {
+    test("Then it should call toast.error with 'Error on register'", async () => {
+      const newUserData = {
+        name: "testUser",
+        username: "testUser",
+        password: "testUser",
+        eMail: "testEMail",
+      };
+      const dispatch = jest.fn();
+      axios.post = jest.fn().mockRejectedValue(null);
+      toast.error = jest.fn();
+
+      const thunk = registerThunk(newUserData);
+      await thunk(dispatch);
+
+      expect(toast.error).toHaveBeenCalledWith("Error on register");
+    });
+  });
 });
 
 describe("Given the loginThunk function", () => {
@@ -88,6 +108,23 @@ describe("Given the loginThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's called and there are a problem on the API", () => {
+    test("Then it should call toast.error with 'Error on login'", async () => {
+      const userData = {
+        username: "correctUsername",
+        password: "correctPassword",
+      };
+      const dispatch = jest.fn();
+      toast.error = jest.fn();
+      axios.post = jest.fn().mockRejectedValue(null);
+
+      const thunk = loginThunk(userData);
+      await thunk(dispatch);
+
+      expect(toast.error).toHaveBeenCalledWith("Error on login");
     });
   });
 });

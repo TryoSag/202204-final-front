@@ -19,9 +19,9 @@ export const getPetsThunk =
         headers: { authorization: `Bearer ${token}` },
       });
 
-      if (status === 200) {
-        toast.dismiss(idLoading);
+      toast.dismiss(idLoading);
 
+      if (status === 200) {
         dispatch(getPetsActionCreator(pets));
       }
     } catch {
@@ -41,9 +41,9 @@ export const deletePetThunk =
         headers: { authorization: `Bearer ${token}` },
       });
 
-      if (status === 200) {
-        toast.dismiss(idLoading);
+      toast.dismiss(idLoading);
 
+      if (status === 200) {
         dispatch(deletePetActionCreator(idToDelete));
 
         toast.success("Pet deleted");
@@ -65,9 +65,9 @@ export const createPetThunk =
         headers: { authorization: `Bearer ${token}` },
       });
 
-      if (status === 201) {
-        toast.dismiss(idLoading);
+      toast.dismiss(idLoading);
 
+      if (status === 201) {
         dispatch(createPetActionCreator(createdPet));
 
         toast.success("Pet created");
@@ -89,9 +89,9 @@ export const editPetThunk =
         headers: { authorization: `Bearer ${token}` },
       });
 
-      if (status === 204) {
-        toast.dismiss(idLoading);
+      toast.dismiss(idLoading);
 
+      if (status === 204) {
         dispatch(editedPetActionCreator(modifiedPet));
 
         toast.success("Pet edited");
