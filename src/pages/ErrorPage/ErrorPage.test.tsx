@@ -1,3 +1,4 @@
+import TestRenderer from "react-test-renderer";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -18,6 +19,18 @@ describe("Given the ErrorPage component", () => {
       expect(
         screen.getByRole("heading", { level: 1, name: "Error" })
       ).toBeInTheDocument();
+    });
+
+    test("Then it should match with the snapshot", () => {
+      const errorPageSnapshot = TestRenderer.create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <ErrorPage />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      expect(errorPageSnapshot).toMatchSnapshot();
     });
   });
 });

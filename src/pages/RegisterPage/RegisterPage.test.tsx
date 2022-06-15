@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import TestRenderer from "react-test-renderer";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "../../redux/store/store";
@@ -53,6 +54,18 @@ describe("Given the RegisterPage page", () => {
         </BrowserRouter>
       );
       expect(mockNavigate).toHaveBeenCalled();
+    });
+
+    test("Then it should match with the snapshot", () => {
+      const registerPageSnapshot = TestRenderer.create(
+        <BrowserRouter>
+          <Provider store={store}>
+            <RegisterPage />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      expect(registerPageSnapshot).toMatchSnapshot();
     });
   });
 });

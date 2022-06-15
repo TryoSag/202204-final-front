@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given the LoginPage page When it's called and there are a token on the local Storage Then it should match with the snapshot 1`] = `
+Array [
+  <header
+    className="sc-bczRLJ QbMXw"
+  >
+    <div
+      className="container--header-logo-title"
+    >
+      <img
+        alt="Pet's House logo"
+        src="./images/logo.svg"
+      />
+    </div>
+    <h1>
+      Login
+    </h1>
+    <div
+      className="container--header-buttons"
+    />
+  </header>,
+  <form
+    autoComplete="off"
+    className="sc-gsnTZi brwyZO login-form"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div>
+      <label
+        htmlFor="username"
+      >
+        Username
+        <input
+          id="username"
+          onChange={[Function]}
+          placeholder="Username"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        htmlFor="password"
+      >
+        Password
+        <input
+          id="password"
+          onChange={[Function]}
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        disabled={true}
+        type="submit"
+      >
+        Login
+      </button>
+    </div>
+    <div>
+      <p>
+        If you want to create an account
+      </p>
+      <a
+        href="/register"
+        onClick={[Function]}
+      >
+        Create account
+      </a>
+    </div>
+  </form>,
+]
+`;
