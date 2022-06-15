@@ -3,12 +3,14 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Provider } from "react-redux";
-import { listOfPets } from "../../mocks/mockPets";
+import { toast } from "react-toastify";
+import { listOfPets, testPetsGenerator } from "../../mocks/mockPets";
 import { testUser } from "../../mocks/mockUsers";
 import store from "../../redux/store/store";
 import { IPet } from "../../types/petsTypes";
 import ListPets from "./ListPets";
 
+const listOf15Pets = testPetsGenerator(15);
 const mockSetStateFilter = jest.fn();
 const mockSetStatePageList = jest.fn();
 const mockSetStatePagination = jest.fn();
@@ -52,6 +54,56 @@ describe("Given the ListPets component", () => {
       );
 
       expect(screen.getByAltText("dog named test0")).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's called and there are more than 15 pets in store", () => {
+    describe("and receives a click on image with the alternative text 'next page'", () => {
+      test("Then it should call mockSetStatePagination", () => {
+        const userMockSlice = createSlice({
+          name: "user",
+          initialState: testUser,
+          reducers: {},
+        });
+        const petsMockSlice = createSlice({
+          name: "pets",
+          initialState: listOf15Pets,
+          reducers: {},
+        });
+        const mockStore = configureStore({
+          reducer: { pets: petsMockSlice.reducer, user: userMockSlice.reducer },
+        });
+
+        render(
+          <Provider store={mockStore}>
+            <ListPets token={"testToken"} />
+          </Provider>
+        );
+        const nextPageButton = screen.getByAltText("next page");
+
+        userEvent.click(nextPageButton);
+
+        expect(mockSetStatePagination).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe("When it's called and there are not pets in store", () => {
+    describe("and receives a click on image with the alternative text 'next page'", () => {
+      test("Then it should call toast warning with 'No more pets'", () => {
+        toast.warning = jest.fn();
+        render(
+          <Provider store={store}>
+            <ListPets token={"testToken"} />
+          </Provider>
+        );
+
+        const nextPageButton = screen.getByAltText("next page");
+
+        userEvent.click(nextPageButton);
+
+        expect(toast.warning).toHaveBeenCalledWith("No more pets");
+      });
     });
   });
 
