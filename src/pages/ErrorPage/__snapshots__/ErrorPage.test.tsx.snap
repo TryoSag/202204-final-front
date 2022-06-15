@@ -10,7 +10,9 @@ Array [
     >
       <img
         alt="Pet's House logo"
+        height={74}
         src="./images/logo.svg"
+        width={152}
       />
     </div>
     <h1>
