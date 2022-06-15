@@ -16,7 +16,12 @@ const Header = ({ pageName, adminUser }: HeaderProps): JSX.Element => {
   return (
     <HeaderStyled>
       <div className="container--header-logo-title">
-        <img src="./images/logo.svg" alt="Pet's House logo" />
+        <img
+          height={74}
+          width={152}
+          src="./images/logo.svg"
+          alt="Pet's House logo"
+        />
       </div>
       <h1>{pageName}</h1>
       <div className="container--header-buttons">
