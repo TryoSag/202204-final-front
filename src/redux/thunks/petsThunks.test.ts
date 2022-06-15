@@ -12,6 +12,7 @@ import {
   editPetThunk,
   getPetsThunk,
 } from "./petsThunks";
+import { toast } from "react-toastify";
 
 describe("Given the getPetsThunk function", () => {
   describe("When it's called and receives a token", () => {
@@ -41,6 +42,20 @@ describe("Given the getPetsThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's called and there a problem with API", () => {
+    test("Then it should call toast.error with 'No pets found'", async () => {
+      const token = "testToken";
+      const dispatch = jest.fn();
+      toast.error = jest.fn();
+      axios.get = jest.fn().mockRejectedValue(null);
+
+      const thunk = getPetsThunk(token);
+      await thunk(dispatch);
+
+      expect(toast.error).toHaveBeenCalledWith("No pets found");
     });
   });
 });
@@ -75,6 +90,21 @@ describe("Given the deletePetThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's called and there a problem with API", () => {
+    test("Then it should call toast.error with 'Error deleting Pet'", async () => {
+      const token = "testToken";
+      const id = "testId";
+      const dispatch = jest.fn();
+      toast.error = jest.fn();
+      axios.delete = jest.fn().mockRejectedValue(null);
+
+      const thunk = deletePetThunk(token, id);
+      await thunk(dispatch);
+
+      expect(toast.error).toHaveBeenCalledWith("Error deleting Pet");
     });
   });
 });
@@ -112,6 +142,21 @@ describe("Given the createPetThunk function", () => {
       expect(dispatch).not.toHaveBeenCalled();
     });
   });
+
+  describe("When it's called and there a problem with API", () => {
+    test("Then it should call toast.error with 'Error creating Pet'", async () => {
+      const token = "testToken";
+      const newPet = testNewPet;
+      const dispatch = jest.fn();
+      toast.error = jest.fn();
+      axios.post = jest.fn().mockRejectedValue(null);
+
+      const thunk = createPetThunk(token, newPet);
+      await thunk(dispatch);
+
+      expect(toast.error).toHaveBeenCalledWith("Error creating Pet");
+    });
+  });
 });
 
 describe("Given the editPetThunk function", () => {
@@ -144,6 +189,21 @@ describe("Given the editPetThunk function", () => {
       await thunk(dispatch);
 
       expect(dispatch).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("When it's called and there a problem with API", () => {
+    test("Then it should call toast.error with 'Error editing Pet'", async () => {
+      const token = "testToken";
+      const modifiedPet = listOfPets[0];
+      const dispatch = jest.fn();
+      toast.error = jest.fn();
+      axios.put = jest.fn().mockRejectedValue(null);
+
+      const thunk = editPetThunk(token, modifiedPet);
+      await thunk(dispatch);
+
+      expect(toast.error).toHaveBeenCalledWith("Error editing Pet");
     });
   });
 });
