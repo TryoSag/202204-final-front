@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 import { listOfPets } from "../../mocks/mockPets";
 import { testUser } from "../../mocks/mockUsers";
 import store from "../../redux/store/store";
@@ -189,6 +190,27 @@ describe("Given the CreateEditForm component", () => {
 
         expect(mockDispatch).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe("When it's called and receives pageName 'New Pet' and clicked the 'Create' button", () => {
+    test("Then it should call toast.warning with 'There are fields without filling'", () => {
+      toast.warning = jest.fn();
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <CreateEditForm pageName="New Pet" />
+          </Provider>
+        </BrowserRouter>
+      );
+
+      const submitButton = screen.getByRole("button", { name: "Create" });
+
+      userEvent.click(submitButton);
+
+      expect(toast.warning).toHaveBeenCalledWith(
+        "There are fields without filling"
+      );
     });
   });
 

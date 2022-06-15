@@ -54,11 +54,6 @@ const PetDetail = (): JSX.Element => {
             </li>
           </ul>
         </li>
-        {null && (
-          <li>
-            <button>Meet</button>
-          </li>
-        )}
       </ul>
     </PetDetailStyled>
   );
