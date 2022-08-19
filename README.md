@@ -1,6 +1,6 @@
 # Pet's House App
 
-https://pets-house-albert-sagol.netlify.app/list
+https://pets-house-albert-sagol.netlify.app
 
 ## Purpose:
 
